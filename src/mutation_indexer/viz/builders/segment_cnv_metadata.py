@@ -9,7 +9,8 @@ from mutation_indexer.viz import configuration
 
 
 class SegmentCNVMetadataInputs(TypedDict):
-    ascat_metadata_df: sql.DataFrame
+    # ascat_metadata_df: sql.DataFrame
+    gistic_metadata_df: sql.DataFrame
 
 
 class SegmentCNVMetadataBuilder(
@@ -23,7 +24,7 @@ class SegmentCNVMetadataBuilder(
     ) -> None:
         """Input dataframe builder that retrieves copy number segment files.
 
-        Then, it uses the output of ASCATMetadataBuilder and joins the copy number
+        Then, it uses the output of GISTICMetadataBuilder and joins the copy number
         segment files with the primary aliquot on analysis_id. This ensures that the
         copy number segment file will be the sibling file of the gene-level copy
         number file.
@@ -54,26 +55,26 @@ class SegmentCNVMetadataBuilder(
             }
         }
 
-        # TODO DEV-3360: remove deprecated query conditional logic
-        if self._config.use_deprecated_query is True:
-            deprecated_clause = {
-                "bool": {
-                    "must": [
-                        {"term": {"data_type": datamodel.DataType.COPY_NUMBER_SEGMENT}},
-                        {"term": {"analysis.workflow_type": datamodel.WorkflowType.ASCAT_NGS}},
-                    ]
-                }
-            }
+        # # TODO DEV-3360: remove deprecated query conditional logic
+        # if self._config.use_deprecated_query is True:
+        #     deprecated_clause = {
+        #         "bool": {
+        #             "must": [
+        #                 {"term": {"data_type": datamodel.DataType.COPY_NUMBER_SEGMENT}},
+        #                 {"term": {"analysis.workflow_type": datamodel.WorkflowType.ASCAT_NGS}},
+        #             ]
+        #         }
+        #     }
 
-            return {
-                "query": {
-                    "bool": {
-                        "must": [acl_clause],
-                        "should": [allele_specific_cns_clause, deprecated_clause],
-                        "minimum_should_match": 1,
-                    }
-                },
-            }
+        #     return {
+        #         "query": {
+        #             "bool": {
+        #                 "must": [acl_clause],
+        #                 "should": [allele_specific_cns_clause, deprecated_clause],
+        #                 "minimum_should_match": 1,
+        #             }
+        #         },
+        #     }
 
         return {"query": {"bool": {"must": [acl_clause, allele_specific_cns_clause]}}}
 
@@ -90,7 +91,8 @@ class SegmentCNVMetadataBuilder(
         |---file_id
         |---workflow_type
         """
-        ascat_metadata_df = input_dfs["ascat_metadata_df"].select(
+        # ascat_metadata_df = input_dfs["ascat_metadata_df"].select(
+        gistic_metadata_df = input_dfs["gistic_metadata_df"].select(
             "aliquot_id", "analysis_id", "case_id", "workflow_type"
         )
         segment_cnv_metadata_df = self._es_dataframe_util.read(
@@ -101,7 +103,8 @@ class SegmentCNVMetadataBuilder(
         segment_cnv_metadata_df = segment_cnv_metadata_df.select(
             "file_id", F.col("analysis.analysis_id").alias("analysis_id")
         )
-        segment_cnv_metadata_df = ascat_metadata_df.join(
+        # segment_cnv_metadata_df = ascat_metadata_df.join(
+        segment_cnv_metadata_df = gistic_metadata_df.join(
             segment_cnv_metadata_df, on="analysis_id", how="inner"
         )
         segment_cnv_metadata_df = segment_cnv_metadata_df.select(

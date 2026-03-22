@@ -43,7 +43,8 @@ class CNVCentricBuilder(base_builder.BaseBuilder):
         self.observation_builder = observation_builder
 
     def build(
-        self, ascat_df: sql.DataFrame, case_df: sql.DataFrame, **kwargs: sql.DataFrame
+        # self, ascat_df: sql.DataFrame, case_df: sql.DataFrame, **kwargs: sql.DataFrame
+        self, gistic_df: sql.DataFrame, case_df: sql.DataFrame, **kwargs: sql.DataFrame
     ) -> Self:
         """
         Builds CNV Centric index
@@ -54,17 +55,20 @@ class CNVCentricBuilder(base_builder.BaseBuilder):
             if self.cnv_centric is not None:
                 return self
 
-        self.log("Select CNV data from ASCAT")
-        cnv_df = df_builders.get_cnv_df(ascat_df, self.index_name)
+        # self.log("Select CNV data from ASCAT")
+        self.log("Select CNV data from GISTIC")
+        # cnv_df = df_builders.get_cnv_df(ascat_df, self.index_name)
+        cnv_df = df_builders.get_cnv_df(gistic_df, self.index_name)
 
         self.log("Build Consequence")
         cons_df = self.consequence_builder.build_for_cnv(
-            ascat_df,
+            gistic_df,
             self.index_name,
         )
 
         self.log("Build Occurrence")
-        occurrence_df = self.build_occurrence_df(ascat_df, case_df)
+        # occurrence_df = self.build_occurrence_df(ascat_df, case_df)
+        occurrence_df = self.build_occurrence_df(gistic_df, case_df)
 
         self.log("Final join CNV + Consequence + Occurrence")
         cnv_cons_df = cnv_df.join(cons_df, on="cnv_id", how="left")
@@ -87,7 +91,8 @@ class CNVCentricBuilder(base_builder.BaseBuilder):
 
         return self
 
-    def build_occurrence_df(self, ascat_df, case_df):
+    # def build_occurrence_df(self, ascat_df, case_df):
+    def build_occurrence_df(self, gistic_df, case_df):
         """
         Assumes you've already added 'case_id'
 
@@ -98,12 +103,15 @@ class CNVCentricBuilder(base_builder.BaseBuilder):
                         |____ observation []
 
         """
-        assert "case_id" in ascat_df.columns
+        # assert "case_id" in ascat_df.columns
+        assert "case_id" in gistic_df.columns
 
         # 1. Observation
-        self.logger.info("Aggregating Observation from ASCAT")
+        # self.logger.info("Aggregating Observation from ASCAT")
+        self.logger.info("Aggregating Observation from GISTIC")
         obs_df = self.observation_builder.build_for_cnv(
-            ascat_df,
+            # ascat_df,
+            gistic_df,
             self.index_name,
         )
 

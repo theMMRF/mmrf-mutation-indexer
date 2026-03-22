@@ -1,6 +1,6 @@
 [build-system]
 build-backend = "setuptools.build_meta"
-requires = ["setuptools>=68", "wheel", "setuptools_scm[toml]>=7.0", "versionista>=1.1.0"]
+requires = ["setuptools>=68", "wheel", "setuptools_scm[toml]>=7.0,<9", "versionista>=1.1.0"]
 
 [project]
 authors = [{name = "NCI GDC", email = "support@nci-gdc.datacommons.io"}]
@@ -26,9 +26,9 @@ dependencies = [
   "tomli-w",
   "typed-argument-parser",
   "typing-extensions",
-  "indexclient",
-  "gdcmodels>=5.10",
-  "mutation-indexer-resource"
+  "indexclient @ git+https://github.com/NCI-GDC/indexclient.git@develop",
+  "gdcmodels @ git+https://github.com/uc-cdis/mmrf-models.git#mmrf",
+  "mutation-indexer-resource @ git+https://github.com/NCI-GDC/mutation-indexer-resource.git@1.0.0"
 ]
 description = "ETL for mutation elasticsearch indices"
 dynamic = ["version"]
@@ -126,7 +126,10 @@ commands = [
     "--output-file=mutation-indexer",
     "--scie=eager",
     "--scie-platform={env:SCIE_PLATFORM}",
-    "--scie-python-version={env:SCIE_PYTHON_VERSION}"
+    "--scie-python-version={env:SCIE_PYTHON_VERSION}",
+    "--find-links=wheels/",
+    "--pre",
+    "--runtime-pex-root=/tmp/pex"
   ],
   [
     "pex",
@@ -137,7 +140,10 @@ commands = [
     "--output-file=driver-all",
     "--scie=eager",
     "--scie-platform={env:SCIE_PLATFORM}",
-    "--scie-python-version={env:SCIE_PYTHON_VERSION}"
+    "--scie-python-version={env:SCIE_PYTHON_VERSION}",
+    "--find-links=wheels/",
+    "--pre",
+    "--runtime-pex-root=/tmp/pex"
   ]
 ]
 deps = ["-crequirements.txt", "pex"]

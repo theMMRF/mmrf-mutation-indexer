@@ -124,14 +124,25 @@ class Driver(driver.Driver[configuration.Configuration]):
             An iterable of all viz input builders.
         """
         return (
-            builders.ASCATMetadataBuilder(
-                config.ascat_metadata,
+            # builders.ASCATMetadataBuilder(
+            #     config.ascat_metadata,
+            #     dependencies.spark_session,
+            #     dependencies.es_dataframe_util,
+            #     dependencies.es_rdd_util,
+            # ),
+            # builders.ASCATBuilder(
+            #     config.ascat,
+            #     dependencies.spark_session,
+            #     dependencies.doc_dataframe_util,
+            # ),
+            builders.GISTICMetadataBuilder(
+                config.gistic_metadata,
                 dependencies.spark_session,
                 dependencies.es_dataframe_util,
                 dependencies.es_rdd_util,
             ),
-            builders.ASCATBuilder(
-                config.ascat,
+            builders.GISTICBuilder(
+                config.gistic,
                 dependencies.spark_session,
                 dependencies.doc_dataframe_util,
             ),

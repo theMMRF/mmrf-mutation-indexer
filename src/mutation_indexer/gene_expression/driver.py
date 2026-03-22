@@ -21,8 +21,8 @@ def _initialize_s3_client(config: aws.S3) -> s3.Client:
     return boto3.client(
         "s3",
         endpoint_url=config.host,
-        aws_access_key_id=config.access_key,
-        aws_secret_access_key=config.secret_key,
+        # aws_access_key_id=config.access_key,
+        # aws_secret_access_key=config.secret_key,
         verify=False,
     )
 

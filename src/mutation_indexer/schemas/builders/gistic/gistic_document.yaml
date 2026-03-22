@@ -1,0 +1,2264 @@
+---
+fields:
+  - &string_field
+    metadata: {}
+    nullable: true
+    type: string
+    name: Gene_Symbol
+  - <<: *string_field
+    name: Locus_ID
+  - <<: *string_field
+    name: Cytoband
+  - &integer_field
+    <<: *string_field
+    type: integer
+    name: MMRF_1016_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1020_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1021_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1029_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1030_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1030_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1030_4_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1030_5_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1031_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1032_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1033_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1037_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1038_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1045_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1048_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1048_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1054_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1055_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1056_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1056_4_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1068_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1071_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1072_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1073_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1076_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1077_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1078_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1082_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1084_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1086_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1089_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1090_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1092_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1098_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1108_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1110_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1110_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1112_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1127_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1137_4_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1143_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1148_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1153_5_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1155_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1156_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1156_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1157_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1157_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1157_4_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1157_5_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1164_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1167_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1169_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1171_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1178_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1178_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1180_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1184_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1185_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1185_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1186_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1188_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1189_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1193_5_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1195_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1201_4_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1201_5_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1201_6_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1202_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1202_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1205_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1210_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1211_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1216_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1216_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1223_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1223_4_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1224_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1231_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1232_4_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1235_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1242_4_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1250_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1251_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1252_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1257_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1257_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1260_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1261_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1266_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1267_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1269_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1269_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1269_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1270_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1274_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1277_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1281_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1283_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1284_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1285_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1286_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1290_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1293_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1293_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1293_4_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1295_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1300_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1300_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1304_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1308_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1308_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1308_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1309_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1309_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1312_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1318_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1320_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1320_6_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1323_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1324_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1325_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1327_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1328_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1328_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1331_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1338_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1338_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1339_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1342_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1344_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1345_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1348_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1349_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1352_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1354_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1355_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1355_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1356_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1358_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1359_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1360_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1361_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1361_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1364_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1365_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1371_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1371_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1377_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1380_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1380_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1383_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1386_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1388_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1389_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1391_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1392_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1393_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1395_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1401_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1401_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1403_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1407_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1408_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1413_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1423_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1424_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1424_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1424_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1425_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1426_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1431_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1432_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1433_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1433_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1433_4_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1433_5_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1434_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1434_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1436_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1439_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1440_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1445_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1446_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1446_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1447_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1450_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1451_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1453_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1454_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1458_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1460_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1461_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1462_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1462_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1462_4_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1466_4_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1466_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1466_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1474_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1474_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1478_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1484_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1484_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1485_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1486_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1489_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1491_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1496_1_PB_CD138pos
+  - <<: *integer_field
+    name: MMRF_1496_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1496_3_PB_CD138pos
+  - <<: *integer_field
+    name: MMRF_1497_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1499_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1500_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1501_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1501_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1502_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1505_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1506_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1510_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1511_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1512_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1512_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1516_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1518_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1518_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1519_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1522_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1522_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1523_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1523_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1525_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1531_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1533_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1533_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1534_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1534_5_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1535_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1537_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1538_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1539_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1539_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1540_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1541_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1542_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1543_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1546_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1547_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1550_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1555_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1556_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1560_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1564_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1565_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1565_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1568_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1568_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1570_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1572_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1573_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1574_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1576_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1577_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1579_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1580_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1583_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1586_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1587_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1587_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1588_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1589_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1593_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1595_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1596_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1597_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1598_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1601_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1602_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1603_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1605_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1605_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1607_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1608_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1610_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1613_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1614_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1617_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1618_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1618_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1621_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1622_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1624_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1624_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1625_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1627_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1627_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1628_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1628_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1629_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1630_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1633_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1634_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1637_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1637_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1639_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1639_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1639_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1640_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1641_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1641_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1642_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1643_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1644_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1645_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1646_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1647_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1648_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1650_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1650_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1651_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1652_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1654_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1655_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1655_1_PB_CD138pos
+  - <<: *integer_field
+    name: MMRF_1656_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1656_4_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1659_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1659_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1659_4_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1664_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1664_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1665_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1667_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1668_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1671_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1671_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1671_4_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1671_5_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1671_6_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1672_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1674_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1676_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1677_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1678_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1680_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1682_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1682_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1683_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1683_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1687_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1689_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1690_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1694_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1694_4_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1695_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1698_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1700_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1700_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1705_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1706_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1710_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1713_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1714_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1715_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1716_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1718_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1719_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1720_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1721_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1722_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1723_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1725_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1726_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1727_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1730_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1730_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1733_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1735_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1735_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1736_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1736_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1739_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1739_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1740_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1744_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1746_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1750_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1753_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1755_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1758_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1759_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1760_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1761_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1763_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1766_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1768_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1771_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1772_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1772_1_PB_CD138pos
+  - <<: *integer_field
+    name: MMRF_1773_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1774_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1775_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1777_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1778_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1778_1_PB_CD138pos
+  - <<: *integer_field
+    name: MMRF_1780_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1781_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1782_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1783_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1783_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1784_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1785_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1786_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1787_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1787_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1790_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1790_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1790_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1790_4_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1790_4_PB_CD138pos
+  - <<: *integer_field
+    name: MMRF_1792_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1793_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1794_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1795_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1795_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1796_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1797_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1801_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1802_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1803_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1805_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1805_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1807_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1808_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1810_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1814_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1815_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1816_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1817_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1819_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1820_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1822_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1823_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1824_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1830_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1831_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1832_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1833_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1834_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1835_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1837_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1837_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1838_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1838_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1839_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1841_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1842_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1845_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1846_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1847_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1850_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1851_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1851_1_PB_CD138pos
+  - <<: *integer_field
+    name: MMRF_1854_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1855_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1856_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1858_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1859_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1860_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1861_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1861_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1865_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1866_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1867_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1871_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1873_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1876_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1876_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1879_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1880_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1880_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1881_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1882_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1886_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1888_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1889_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1889_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1890_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1891_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1893_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1895_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1897_1_PB_CD138pos
+  - <<: *integer_field
+    name: MMRF_1900_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1906_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1908_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1908_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1908_4_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1908_4_PB_CD138pos
+  - <<: *integer_field
+    name: MMRF_1911_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1912_1_PB_CD138pos
+  - <<: *integer_field
+    name: MMRF_1912_3_PB_CD138pos
+  - <<: *integer_field
+    name: MMRF_1913_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1913_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1915_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1916_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1916_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1917_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1918_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1921_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1921_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1922_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1927_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1927_1_PB_CD138pos
+  - <<: *integer_field
+    name: MMRF_1929_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1930_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1931_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1931_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1932_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1935_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1935_4_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1940_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1955_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1957_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1957_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1960_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1963_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1965_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1965_1_PB_CD138pos
+  - <<: *integer_field
+    name: MMRF_1967_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1970_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1971_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1971_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1972_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1974_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1977_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1978_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1978_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1981_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1982_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1984_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1985_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1986_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1988_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1991_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1992_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1992_1_PB_CD138pos
+  - <<: *integer_field
+    name: MMRF_1992_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1992_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1994_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1995_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1995_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1997_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1998_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_1999_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2000_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2001_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2002_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2005_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2006_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2007_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2011_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2012_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2013_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2014_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2015_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2015_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2016_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2017_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2017_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2018_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2024_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2026_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2035_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2038_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2039_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2039_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2041_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2043_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2047_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2050_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2054_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2055_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2056_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2057_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2058_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2061_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2062_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2063_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2064_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2068_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2072_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2072_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2074_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2076_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2076_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2076_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2079_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2080_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2081_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2082_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2083_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2083_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2083_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2085_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2085_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2087_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2087_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2089_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2089_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2089_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2089_3_PB_CD138pos
+  - <<: *integer_field
+    name: MMRF_2090_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2091_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2093_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2095_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2095_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2097_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2098_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2101_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2102_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2102_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2106_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2107_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2111_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2111_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2112_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2113_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2115_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2116_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2118_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2119_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2122_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2122_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2124_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2125_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2125_1_PB_CD138pos
+  - <<: *integer_field
+    name: MMRF_2126_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2126_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2128_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2129_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2132_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2137_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2141_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2143_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2144_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2149_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2150_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2151_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2152_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2153_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2159_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2159_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2167_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2167_3_PB_CD138pos
+  - <<: *integer_field
+    name: MMRF_2170_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2172_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2173_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2174_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2176_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2180_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2181_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2183_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2185_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2186_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2187_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2187_1_PB_CD138pos
+  - <<: *integer_field
+    name: MMRF_2190_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2191_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2191_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2194_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2194_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2195_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2195_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2197_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2198_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2198_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2199_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2200_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2201_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2203_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2204_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2204_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2207_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2209_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2211_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2213_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2214_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2215_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2216_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2217_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2220_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2222_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2223_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2224_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2225_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2226_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2228_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2229_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2230_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2231_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2232_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2236_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2237_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2238_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2240_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2244_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2245_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2246_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2250_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2250_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2251_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2253_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2257_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2258_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2265_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2266_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2267_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2268_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2269_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2270_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2271_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2272_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2273_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2279_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2281_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2284_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2286_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2288_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2289_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2289_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2289_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2290_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2291_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2292_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2293_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2297_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2300_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2301_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2301_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2302_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2305_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2306_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2307_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2308_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2310_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2313_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2313_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2313_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2313_5_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2314_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2316_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2317_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2324_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2325_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2326_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2327_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2329_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2330_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2330_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2331_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2331_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2333_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2335_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2336_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2339_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2339_4_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2341_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2344_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2344_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2352_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2353_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2362_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2363_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2363_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2364_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2365_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2366_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2367_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2367_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2368_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2373_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2373_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2377_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2378_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2379_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2380_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2383_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2384_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2386_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2394_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2397_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2399_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2400_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2401_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2401_1_PB_CD138pos
+  - <<: *integer_field
+    name: MMRF_2401_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2404_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2407_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2409_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2410_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2411_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2412_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2412_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2413_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2422_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2425_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2426_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2426_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2427_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2428_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2429_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2433_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2436_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2437_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2438_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2440_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2442_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2444_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2445_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2446_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2449_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2452_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2452_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2452_4_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2453_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2455_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2456_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2457_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2458_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2459_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2461_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2464_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2465_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2465_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2468_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2469_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2471_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2472_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2473_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2475_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2476_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2477_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2478_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2480_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2485_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2486_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2487_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2488_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2489_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2489_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2490_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2490_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2497_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2498_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2499_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2501_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2504_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2505_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2506_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2507_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2511_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2514_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2515_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2516_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2517_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2517_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2518_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2519_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2519_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2522_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2523_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2523_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2523_2_PB_CD138pos
+  - <<: *integer_field
+    name: MMRF_2524_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2525_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2526_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2526_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2531_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2531_1_PB_CD138pos
+  - <<: *integer_field
+    name: MMRF_2531_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2531_2_PB_CD138pos
+  - <<: *integer_field
+    name: MMRF_2532_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2535_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2538_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2539_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2539_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2541_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2543_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2545_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2546_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2548_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2549_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2550_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2554_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2556_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2557_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2559_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2560_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2562_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2562_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2563_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2564_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2564_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2566_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2567_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2568_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2570_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2572_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2572_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2573_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2574_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2577_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2579_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2580_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2581_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2583_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2584_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2587_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2590_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2592_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2593_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2595_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2596_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2597_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2598_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2599_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2601_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2601_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2602_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2604_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2605_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2606_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2606_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2606_3_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2608_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2609_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2613_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2613_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2614_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2621_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2621_1_PB_CD138pos
+  - <<: *integer_field
+    name: MMRF_2622_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2624_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2628_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2630_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2631_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2634_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2635_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2636_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2637_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2638_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2639_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2640_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2641_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2642_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2643_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2646_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2647_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2650_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2651_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2652_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2654_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2655_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2659_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2660_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2664_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2665_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2665_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2666_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2667_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2669_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2669_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2670_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2671_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2675_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2676_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2677_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2678_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2679_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2680_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2681_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2682_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2685_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2688_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2689_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2690_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2691_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2692_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2694_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2695_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2695_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2696_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2698_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2699_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2700_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2701_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2702_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2703_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2704_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2705_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2706_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2707_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2708_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2709_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2711_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2714_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2715_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2715_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2716_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2718_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2719_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2721_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2722_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2723_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2727_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2728_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2729_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2730_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2731_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2732_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2733_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2737_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2738_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2739_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2740_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2742_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2743_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2745_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2746_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2750_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2751_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2752_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2753_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2754_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2755_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2756_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2757_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2758_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2760_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2761_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2762_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2763_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2764_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2765_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2767_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2768_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2769_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2770_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2772_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2774_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2775_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2776_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2778_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2779_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2781_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2782_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2787_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2788_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2789_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2792_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2793_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2794_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2795_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2799_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2801_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2805_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2807_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2808_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2813_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2814_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2815_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2816_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2817_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2818_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2819_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2820_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2821_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2822_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2823_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2826_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2827_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2828_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2828_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2829_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2830_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2831_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2832_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2833_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2834_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2835_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2836_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2838_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2839_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2840_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2847_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2847_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2848_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2851_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2853_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2903_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2903_1_PB_CD138pos
+  - <<: *integer_field
+    name: MMRF_2905_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2908_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2910_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2911_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2912_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2913_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2914_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2915_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2916_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2917_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2918_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2921_2_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2926_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2933_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2936_1_PB_CD138pos
+  - <<: *integer_field
+    name: MMRF_2938_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2939_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2940_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2941_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2942_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2943_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2946_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2947_1_BM_CD138pos
+  - <<: *integer_field
+    name: MMRF_2952_1_BM_CD138pos
+type: struct

@@ -30,7 +30,8 @@ def _is_main_url(metadata: dict):
     Returns:
         bool: True if main URL, False otherwise
     """
-    return metadata.get("type") == "cleversafe" and metadata.get("state") == "validated"
+    # return metadata.get("type") == "cleversafe" and metadata.get("state") == "validated"
+    return True
 
 
 def _get_and_format_url(doc: client.Document) -> str | None:
@@ -45,7 +46,8 @@ def _get_and_format_url(doc: client.Document) -> str | None:
     """
     for url, meta in doc.urls_metadata.items():
         if _is_main_url(meta):
-            url = url.replace("s3://", "s3a://").replace("cleversafe.service.consul/", "")
+            # url = url.replace("s3://", "s3a://").replace("cleversafe.service.consul/", "")
+            url = url.replace("s3://", "s3a://")
             return url
 
     return None
@@ -91,11 +93,13 @@ class DataFrameUtil:
         df = self._spark_session.read.csv(
             urls,
             schema=schema,
+            inferSchema=True,
             sep="\t",
             comment=comment,
             header=has_header,
             enforceSchema=enforce_schema,
-            mode="FAILFAST",
+            # mode="FAILFAST",
+            mode="PERMISSIVE",
         )
 
         if include_file_name:

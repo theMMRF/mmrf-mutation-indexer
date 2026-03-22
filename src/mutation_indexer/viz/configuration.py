@@ -20,30 +20,30 @@ from mutation_indexer.configuration.builders import GeneModelBuilder
 from mutation_indexer.constants import app
 
 
-@dataclasses.dataclass(frozen=True)
-class ASCATBuilder(builders.Builder):
-    """
-    Configuration values for running the ASCAT builder
-    """
+# @dataclasses.dataclass(frozen=True)
+# class ASCATBuilder(builders.Builder):
+#     """
+#     Configuration values for running the ASCAT builder
+#     """
 
-    omit_cnv_data: bool
+#     omit_cnv_data: bool
 
 
-@dataclasses.dataclass(frozen=True)
-class ASCATMetadataBuilder(builders.Builder):
-    """Configuration values for the ASCAT metadata builder."""
+# @dataclasses.dataclass(frozen=True)
+# class ASCATMetadataBuilder(builders.Builder):
+#     """Configuration values for the ASCAT metadata builder."""
 
-    @dataclasses.dataclass(frozen=True)
-    class Priority:
-        experimental_strategy: str
-        workflow_type: str
+#     @dataclasses.dataclass(frozen=True)
+#     class Priority:
+#         experimental_strategy: str
+#         workflow_type: str
 
-    priorities: Annotated[
-        Sequence[Priority],
-        _extensions.ArrayTupleField(
-            fields.Nested(marshmallow_dataclass.class_schema(Priority))
-        ),
-    ]
+#     priorities: Annotated[
+#         Sequence[Priority],
+#         _extensions.ArrayTupleField(
+#             fields.Nested(marshmallow_dataclass.class_schema(Priority))
+#         ),
+#     ]
 
 
 @dataclasses.dataclass(frozen=True)
@@ -156,13 +156,37 @@ class SSMOccurrenceCentricBuilder(builders.IndexBuilder): ...
 
 
 @dataclasses.dataclass(frozen=True)
+class GISTICBuilder(builders.Builder):
+    """
+    Configuration values for running the GISTIC builder
+    """
+
+
+@dataclasses.dataclass(frozen=True)
+class GISTICMetadataBuilder(builders.Builder):
+    """Configuration values for the GISTIC metadata builder."""
+
+    @dataclasses.dataclass(frozen=True)
+    class Priority:
+        experimental_strategy: str
+        workflow_type: str
+
+    priorities: Annotated[
+        Sequence[Priority],
+        _extensions.ArrayTupleField(
+            fields.Nested(marshmallow_dataclass.class_schema(Priority))
+        ),
+    ]
+
+
+@dataclasses.dataclass(frozen=True)
 class Builders:
     """
     Configuration values for running the export of the viz indices
     """
 
-    ascat: ASCATBuilder
-    ascat_metadata: ASCATMetadataBuilder
+    # ascat: ASCATBuilder
+    # ascat_metadata: ASCATMetadataBuilder
     case: CaseBuilder
     civic_dna: CIVIC.DNABuilder
     civic_protein: CIVIC.ProteinBuilder
@@ -180,6 +204,8 @@ class Builders:
     segment_cnv_occurrence_centric: SegmentCNVOccurrenceCentricBuilder
     ssm_centric: SSMCentricBuilder
     ssm_occurrence_centric: SSMOccurrenceCentricBuilder
+    gistic: GISTICBuilder
+    gistic_metadata: GISTICMetadataBuilder
 
 
 class Configuration(configuration.Configuration):

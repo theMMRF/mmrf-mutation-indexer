@@ -2,8 +2,8 @@ import enum
 
 
 class DataFrame(enum.IntEnum):
-    ASCAT = enum.auto()
-    ASCAT_METADATA = enum.auto()
+    # ASCAT = enum.auto()
+    # ASCAT_METADATA = enum.auto()
     BINARY = enum.auto()
     CASE = enum.auto()
     CASE_CENTRIC = enum.auto()
@@ -26,6 +26,8 @@ class DataFrame(enum.IntEnum):
     SEGMENT_CNV_OCCURRENCE_CENTRIC = enum.auto()
     SSM_CENTRIC = enum.auto()
     SSM_OCCURRENCE_CENTRIC = enum.auto()
+    GISTIC = enum.auto()
+    GISTIC_METADATA = enum.auto()
 
     def to_param(self) -> str:
         return f"{self.name}_df".lower()

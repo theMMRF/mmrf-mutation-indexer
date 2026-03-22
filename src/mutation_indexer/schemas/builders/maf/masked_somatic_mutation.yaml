@@ -1,10 +1,12 @@
 ---
+type: struct
 fields:
   - &string_field
     metadata: {}
     name: Hugo_Symbol
     nullable: true
     type: string
+
   - <<: *string_field
     name: Entrez_Gene_Id
   - <<: *string_field
@@ -104,8 +106,6 @@ fields:
   - <<: *string_field
     name: Feature_type
   - <<: *string_field
-    name: One_Consequence
-  - <<: *string_field
     name: Consequence
   - <<: *string_field
     name: cDNA_position
@@ -120,9 +120,11 @@ fields:
   - <<: *string_field
     name: Existing_variation
   - <<: *string_field
+    name: ALLELE_NUM
+  - <<: *string_field
     name: DISTANCE
   - <<: *string_field
-    name: TRANSCRIPT_STRAND
+    name: STRAND_VEP
   - <<: *string_field
     name: SYMBOL
   - <<: *string_field
@@ -144,15 +146,7 @@ fields:
   - <<: *string_field
     name: UNIPARC
   - <<: *string_field
-    name: UNIPROT_ISOFORM
-  - <<: *string_field
     name: RefSeq
-  - <<: *string_field
-    name: MANE
-  - <<: *string_field
-    name: APPRIS
-  - <<: *string_field
-    name: FLAGS
   - <<: *string_field
     name: SIFT
   - <<: *string_field
@@ -164,77 +158,29 @@ fields:
   - <<: *string_field
     name: DOMAINS
   - <<: *string_field
-    name: 1000G_AF
+    name: AF
   - <<: *string_field
-    name: 1000G_AFR_AF
+    name: AFR_AF
   - <<: *string_field
-    name: 1000G_AMR_AF
+    name: AMR_AF
   - <<: *string_field
-    name: 1000G_EAS_AF
+    name: ASN_AF
   - <<: *string_field
-    name: 1000G_EUR_AF
+    name: EAS_AF
   - <<: *string_field
-    name: 1000G_SAS_AF
+    name: EUR_AF
   - <<: *string_field
-    name: ESP_AA_AF
+    name: SAS_AF
   - <<: *string_field
-    name: ESP_EA_AF
+    name: AA_AF
   - <<: *string_field
-    name: gnomAD_AF
-  - <<: *string_field
-    name: gnomAD_AFR_AF
-  - <<: *string_field
-    name: gnomAD_AMR_AF
-  - <<: *string_field
-    name: gnomAD_ASJ_AF
-  - <<: *string_field
-    name: gnomAD_EAS_AF
-  - <<: *string_field
-    name: gnomAD_FIN_AF
-  - <<: *string_field
-    name: gnomAD_NFE_AF
-  - <<: *string_field
-    name: gnomAD_OTH_AF
-  - <<: *string_field
-    name: gnomAD_SAS_AF
-  - <<: *string_field
-    name: MAX_AF
-  - <<: *string_field
-    name: MAX_AF_POPS
-  - <<: *string_field
-    name: gnomAD_non_cancer_AF
-  - <<: *string_field
-    name: gnomAD_non_cancer_AFR_AF
-  - <<: *string_field
-    name: gnomAD_non_cancer_AMI_AF
-  - <<: *string_field
-    name: gnomAD_non_cancer_AMR_AF
-  - <<: *string_field
-    name: gnomAD_non_cancer_ASJ_AF
-  - <<: *string_field
-    name: gnomAD_non_cancer_EAS_AF
-  - <<: *string_field
-    name: gnomAD_non_cancer_FIN_AF
-  - <<: *string_field
-    name: gnomAD_non_cancer_MID_AF
-  - <<: *string_field
-    name: gnomAD_non_cancer_NFE_AF
-  - <<: *string_field
-    name: gnomAD_non_cancer_OTH_AF
-  - <<: *string_field
-    name: gnomAD_non_cancer_SAS_AF
-  - <<: *string_field
-    name: gnomAD_non_cancer_MAX_AF_adj
-  - <<: *string_field
-    name: gnomAD_non_cancer_MAX_AF_POPS_adj
+    name: EA_AF
   - <<: *string_field
     name: CLIN_SIG
   - <<: *string_field
     name: SOMATIC
   - <<: *string_field
     name: PUBMED
-  - <<: *string_field
-    name: TRANSCRIPTION_FACTORS
   - <<: *string_field
     name: MOTIF_NAME
   - <<: *string_field
@@ -243,8 +189,6 @@ fields:
     name: HIGH_INF_POS
   - <<: *string_field
     name: MOTIF_SCORE_CHANGE
-  - <<: *string_field
-    name: miRNA
   - <<: *string_field
     name: IMPACT
   - <<: *string_field
@@ -258,29 +202,72 @@ fields:
   - <<: *string_field
     name: PHENO
   - <<: *string_field
+    name: MINIMISED
+  - <<: *string_field
     name: GENE_PHENO
   - <<: *string_field
-    name: CONTEXT
+    name: FILTER
   - <<: *string_field
-    name: tumor_bam_uuid
+    name: flanking_bps
   - <<: *string_field
-    name: normal_bam_uuid
+    name: vcf_id
   - <<: *string_field
-    name: case_id
+    name: vcf_qual
   - <<: *string_field
-    name: GDC_FILTER
+    name: gnomADe_AF
+  - <<: *string_field
+    name: gnomADe_AFR_AF
+  - <<: *string_field
+    name: gnomADe_AMR_AF
+  - <<: *string_field
+    name: gnomADe_ASJ_AF
+  - <<: *string_field
+    name: gnomADe_EAS_AF
+  - <<: *string_field
+    name: gnomADe_FIN_AF
+  - <<: *string_field
+    name: gnomADe_NFE_AF
+  - <<: *string_field
+    name: gnomADe_OTH_AF
+  - <<: *string_field
+    name: gnomADe_SAS_AF
+  - <<: *string_field
+    name: vcf_pos
+  - <<: *string_field
+    name: CC
   - <<: *string_field
     name: COSMIC
   - <<: *string_field
-    name: hotspot
+    name: COSMIC_NC
   - <<: *string_field
-    name: RNA_Support
+    name: GNOMAD_EXOME
+  - <<: *string_field
+    name: GNOMAD_EXOME_AF
+  - <<: *string_field
+    name: GNOMAD_GENOME
+  - <<: *string_field
+    name: GNOMAD_GENOME_AF
+  - <<: *string_field
+    name: TOPMED
+  - <<: *string_field
+    name: TOPMED_AF
+  - <<: *string_field
+    name: CLINVAR
+  - <<: *string_field
+    name: case uuid
+  - <<: *string_field
+    name: callers
+  - <<: *string_field
+    name: ESP_AA_AF
+  - <<: *string_field
+    name: normal_bam_uuid
+  - <<: *string_field
+    name: tumor_bam_uuid
+  - <<: *string_field
+    name: RNA_alt_count
   - <<: *string_field
     name: RNA_depth
   - <<: *string_field
     name: RNA_ref_count
   - <<: *string_field
-    name: RNA_alt_count
-  - <<: *string_field
-    name: callers
-type: struct
+    name: RNA_Support

@@ -4,7 +4,7 @@
 #
 #    pip-compile --all-extras --index-url=https://nexus.osdc.io/repository/pypi-gdc-releases/simple --strip-extras
 #
---index-url https://nexus.osdc.io/repository/pypi-gdc-releases/simple
+#--index-url https://nexus.osdc.io/repository/pypi-gdc-releases/simple
 
 aiohappyeyeballs==2.6.1
     # via aiohttp
@@ -54,7 +54,8 @@ frozenlist==1.7.0
     # via
     #   aiohttp
     #   aiosignal
-gdcmodels==5.11.1
+# gdcmodels==5.11.1
+gdcmodels @ git+https://github.com/uc-cdis/mmrf-models.git#mmrf
     # via gdc-mutation-indexer (pyproject.toml)
 halo==0.0.31
     # via gdc-mutation-indexer (pyproject.toml)
@@ -66,7 +67,8 @@ importlib-resources==6.5.2
     # via
     #   gdc-mutation-indexer (pyproject.toml)
     #   gdcmodels
-indexclient==2.7
+# indexclient==2.7
+indexclient @ git+https://github.com/NCI-GDC/indexclient.git@develop
     # via gdc-mutation-indexer (pyproject.toml)
 inflect==7.5.0
     # via gdc-mutation-indexer (pyproject.toml)
@@ -95,7 +97,8 @@ multidict==6.7.1
     # via
     #   aiohttp
     #   yarl
-mutation-indexer-resource==1.0.0
+# mutation-indexer-resource==1.0.0
+mutation-indexer-resource @ git+https://github.com/NCI-GDC/mutation-indexer-resource.git@1.0.0
     # via gdc-mutation-indexer (pyproject.toml)
 mypy-boto3-s3==1.38.39
     # via boto3-stubs
