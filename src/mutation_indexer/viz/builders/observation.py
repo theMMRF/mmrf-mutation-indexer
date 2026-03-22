@@ -37,17 +37,15 @@ class ObservationBuilder:
                 index_name, "observation", selector=selector, ignore=["observation_id"]
             ),
         ).join(primary_aliquot_df, ["case_id"], how="left")
-        flat_obs_df = (
-            flat_obs_df.withColumn(
-                "variant_caller",
-                F.explode(F.split("variant_caller", ";")),
-            )
-            .withColumn(
-                "variant_caller",
-                F.regexp_replace("variant_caller", r"^\*+|\*+$", ""),
-            )
-            .where(F.col("variant_caller") != F.lit("somaticsniper"))
-        )
+
+        # unique_values_variant_caller = flat_obs_df.select("variant_caller").distinct()
+
+        # flat_obs_df = (
+        #     flat_obs_df.withColumn("variant_caller", F.explode(F.split("variant_caller", ";")))
+        #     .withColumn("variant_caller", F.regexp_replace("variant_caller", r"^\*+|\*+$", ""))
+        #     .where(F.col("variant_caller") != F.lit("somaticsniper"))
+        # )
+
         flat_obs_df = flat_obs_df.withColumn(
             "observation_id",
             utils.uuid5_col(
@@ -74,7 +72,8 @@ class ObservationBuilder:
         )
 
     def build_for_cnv(
-        self, ascat_df: sql.DataFrame, index: str, selector: str | None = None
+        # self, ascat_df: sql.DataFrame, index: str, selector: str | None = None
+        self, gistic_df: sql.DataFrame, index: str, selector: str | None = None
     ) -> sql.DataFrame:
         """
         observation[]
@@ -87,7 +86,8 @@ class ObservationBuilder:
         """
 
         # add other observation fields
-        obs_df = ascat_df.withColumn(
+        # obs_df = ascat_df.withColumn(
+        obs_df = gistic_df.withColumn(
             "variant_calling",
             F.struct("variant_caller").alias("variant_calling"),
         )

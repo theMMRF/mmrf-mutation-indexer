@@ -11,7 +11,8 @@ from mutation_indexer.gene_expression import configuration
 def _get_primary_aliquot_filters(projects: Sequence[str]) -> list[dict]:
     filters: list[dict] = [
         {"terms": {"data_type": ["Gene Expression Quantification"]}},
-        {"terms": {"acl": ["open"]}},
+        # {"terms": {"acl": ["open"]}},
+        {"terms": {"acl": ["*"]}},
         {"term": {"analysis.workflow_type": "STAR - Counts"}},
     ]
 
@@ -74,6 +75,7 @@ class PrimaryAliquotBuilder(
         filters = _get_primary_aliquot_filters(self._config.projects)
         case_fields = [
             "cases.submitter_id",
+            "cases.samples.submitter_id",
         ]
 
         return self._get_primary_aliquot_df(

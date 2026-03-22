@@ -42,7 +42,8 @@ def build_ssm_subtree(
 
 
 def build_cnv_subtree(
-    ascat_df: sql.DataFrame,
+    # ascat_df: sql.DataFrame,
+    gistic_df: sql.DataFrame,
     index_name: str,
     cons_df: sql.DataFrame | None = None,
     obs_df: sql.DataFrame | None = None,
@@ -57,7 +58,8 @@ def build_cnv_subtree(
 
     """
     cnv_df = get_cnv_df(
-        ascat_df,
+        # ascat_df,
+        gistic_df,
         index_name,
         add_fields=add_fields,
         drop_fields=frozenset(("occurrence_id",)),
@@ -165,7 +167,8 @@ def get_ssm_df(
 
 
 def get_cnv_df(
-    ascat_df: sql.DataFrame,
+    # ascat_df: sql.DataFrame,
+    gistic_df: sql.DataFrame,
     index_name: str,
     add_fields: Iterable[str] = (),
     drop_fields: Container[str] = (),
@@ -173,7 +176,8 @@ def get_cnv_df(
     ignore: Container[str] = (),
 ) -> sql.DataFrame:
     return get_single_df(
-        ascat_df, index_name, "cnv", add_fields, drop_fields, unique_fields, ignore
+        # ascat_df, index_name, "cnv", add_fields, drop_fields, unique_fields, ignore
+        gistic_df, index_name, "cnv", add_fields, drop_fields, unique_fields, ignore
     )
 
 

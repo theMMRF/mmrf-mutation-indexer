@@ -100,7 +100,9 @@ class BaseBuilder(abc.ABC):
 
         self.log(f"Creating {index} index")
         response = self.config.es.indices.create(
-            index=index, mappings=mapper.mappings, settings=mapper.settings
+            index=index, mappings=mapper.mappings, settings=mapper.settings,
+            timeout="60s",
+            master_timeout="60s"
         )
         self.log(response)
 
@@ -121,7 +123,7 @@ class BaseBuilder(abc.ABC):
             "es.net.ssl.cert.allow.self.signed", self.config.disable_es_verify_certs
         ).option("es.nodes.wan.only", "true").option(
             "es.nodes.resolve.hostname", "false"
-        ).option("es.resource.write", index).option("es.http.timeout", "20m").option(
+        ).option("es.resource.write", index).option("es.http.timeout", "1h").option(
             "es.http.retries", "-1"
         ).option("es.batch.write.retry.count", "-1").option(
             "es.batch.write.retry.wait", "10m"

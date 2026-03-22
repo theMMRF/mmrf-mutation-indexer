@@ -26,7 +26,22 @@ def _initialize_spark() -> Iterator[sql.SparkSession]:
     Returns:
         The context manager for spark session for the current driver.
     """
-    with sql.SparkSession.builder.getOrCreate() as spark_session:
+    with sql.SparkSession.builder.config(
+        "spark.hadoop.fs.s3a.aws.credentials.provider",
+        "org.apache.hadoop.fs.s3a.auth.AssumedRoleCredentialProvider"
+    ) \
+    .config(
+        "spark.hadoop.fs.s3a.assumed.role.arn",
+        "arn:aws:iam::006459778784:role/Gen3_EC2_r7i_KMS_Role"
+    ) \
+    .config(
+        "spark.hadoop.fs.s3a.assumed.role.credentials.provider",
+        "com.amazonaws.auth.InstanceProfileCredentialsProvider"
+    ) \
+    .config(
+        "spark.hadoop.fs.s3a.endpoint",
+        "s3.us-east-1.amazonaws.com"
+    ).getOrCreate() as spark_session:
         spark_session.sparkContext.setLogLevel("FATAL")
 
         yield spark_session
@@ -43,7 +58,8 @@ def get_index_client(config: indexd.IndexD) -> client.IndexClient:
         An indexd client
     """
     return client.IndexClient(
-        baseurl=f"{config.host}:{config.port}",
+        # baseurl=f"{config.host}:{config.port}",
+        baseurl=f"{config.host}",
         auth=(config.user, config.password),
     )
 

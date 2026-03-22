@@ -75,7 +75,10 @@ class PrimaryAliquotBuilder(
             if self._config.projects
             else [{"match_all": {}}]
         )
-        include_fields = ("experimental_strategy",)
+        include_fields = (
+            "experimental_strategy",
+            "cases.samples.submitter_id",
+        )
 
         return self._get_primary_aliquot_df(
             filters, entities=frozenset(("case", "file")), include_fields=include_fields

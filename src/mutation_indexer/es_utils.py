@@ -651,7 +651,7 @@ class DataFrameUtil:
             .option("es.nodes.wan.only", "true")
             .option("es.nodes.resolve.hostname", "false")
             .option("es.resource.write", index)
-            .option("es.http.timeout", "20m")
+            .option("es.http.timeout", "1h")
             .option("es.http.retries", "-1")
             .option("es.batch.write.retry.count", "-1")
             .option("es.batch.write.retry.wait", "10m")

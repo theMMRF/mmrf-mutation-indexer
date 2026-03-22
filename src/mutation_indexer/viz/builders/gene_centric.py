@@ -49,7 +49,8 @@ class GeneCentricBuilder(base_builder.BaseBuilder):
     def build(
         self,
         maf_df: sql.DataFrame,
-        ascat_df: sql.DataFrame,
+        # ascat_df: sql.DataFrame,
+        gistic_df: sql.DataFrame,
         case_df: sql.DataFrame,
         primary_aliquot_df: sql.DataFrame,
         **kwargs: sql.DataFrame,
@@ -66,14 +67,18 @@ class GeneCentricBuilder(base_builder.BaseBuilder):
 
         self.log("Building Gene from MAF and ASCAT")
         gene_df = df_builders.get_gene_df(maf_df, self.index_name, unique_fields=["gene_id"])
-        ascat_gene_df = df_builders.get_gene_df(
-            ascat_df, self.index_name, unique_fields=["gene_id"]
+        # ascat_gene_df = df_builders.get_gene_df(
+        gistic_gene_df = df_builders.get_gene_df(
+            # ascat_df, self.index_name, unique_fields=["gene_id"]
+            gistic_df, self.index_name, unique_fields=["gene_id"]
         )
-        gene_df = gene_df.union(ascat_gene_df).distinct()
+        # gene_df = gene_df.union(ascat_gene_df).distinct()
+        gene_df = gene_df.union(gistic_gene_df).distinct()
         self.log_count(gene_df)
 
         self.log("Building Case subtree")
-        case_subtree = self.build_case_subtree(maf_df, ascat_df, case_df, primary_aliquot_df)
+        # case_subtree = self.build_case_subtree(maf_df, ascat_df, case_df, primary_aliquot_df)
+        case_subtree = self.build_case_subtree(maf_df, gistic_df, case_df, primary_aliquot_df)
 
         self.log('Joining Gene with Case subtree [inner, "gene_id"]')
         gene_centric = gene_df.join(
@@ -93,7 +98,8 @@ class GeneCentricBuilder(base_builder.BaseBuilder):
     def build_case_subtree(
         self,
         maf_df: sql.DataFrame,
-        ascat_df: sql.DataFrame,
+        # ascat_df: sql.DataFrame,
+        gistic_df: sql.DataFrame,
         case_df: sql.DataFrame,
         primary_aliquot_df: sql.DataFrame,
     ) -> sql.DataFrame:
@@ -105,7 +111,8 @@ class GeneCentricBuilder(base_builder.BaseBuilder):
         self.log("Building Case with gene info from MAF and GeneModel")
         case_and_gene_df = self._build_case_with_gene_id(
             maf_df,
-            ascat_df,
+            # ascat_df,
+            gistic_df,
             case_df,
         )
 
@@ -114,7 +121,8 @@ class GeneCentricBuilder(base_builder.BaseBuilder):
         self.log_count(ssm_df)
 
         self.log("Building CNV subtree")
-        cnv_df = self.build_cnv_subtree(ascat_df)
+        # cnv_df = self.build_cnv_subtree(ascat_df)
+        cnv_df = self.build_cnv_subtree(gistic_df)
         self.log_count(cnv_df)
 
         self.log("Join SSM and CNV subtrees to Case [left, gene_id, case_id]")
@@ -178,7 +186,8 @@ class GeneCentricBuilder(base_builder.BaseBuilder):
         )
         return ssm_df
 
-    def build_cnv_subtree(self, ascat_df):
+    # def build_cnv_subtree(self, ascat_df):
+    def build_cnv_subtree(self, gistic_df):
         """
         TODO: This branch is same as in case_centric and can be reused
         cnv[]
@@ -187,13 +196,15 @@ class GeneCentricBuilder(base_builder.BaseBuilder):
         """
         # Observation
         obs_df = self.observation_builder.build_for_cnv(
-            ascat_df,
+            # ascat_df,
+            gistic_df,
             self.index_name,
             selector="cnv",
         )
 
         # Build the final cnv dataframe
-        cnv_df = df_builders.build_cnv_subtree(ascat_df, self.index_name, obs_df=obs_df)
+        # cnv_df = df_builders.build_cnv_subtree(ascat_df, self.index_name, obs_df=obs_df)
+        cnv_df = df_builders.build_cnv_subtree(gistic_df, self.index_name, obs_df=obs_df)
 
         # Aggregate CNV
         self.log("Aggregating cnv by case_id and gene_id")
@@ -209,16 +220,20 @@ class GeneCentricBuilder(base_builder.BaseBuilder):
 
         return cnv_df
 
-    def _build_case_with_gene_id(self, maf_df, ascat_df, case_df):
+    # def _build_case_with_gene_id(self, maf_df, ascat_df, case_df):
+    def _build_case_with_gene_id(self, maf_df, gistic_df, case_df):
         self.log("\nSelecting Gene from MAF")
-        maf_and_ascat_df = (
+        # maf_and_ascat_df = (
+        maf_and_gistic_df = (
             maf_df.select("case_id", "gene_id")
-            .union(ascat_df.select("case_id", "gene_id"))
+            # .union(ascat_df.select("case_id", "gene_id"))
+            .union(gistic_df.select("case_id", "gene_id"))
             .distinct()
         )
 
         self.log("Getting gene_id for each case via joining with gene_df")
-        case_gene_id = maf_and_ascat_df.join(case_df, on="case_id").select(
+        # case_gene_id = maf_and_ascat_df.join(case_df, on="case_id").select(
+        case_gene_id = maf_and_gistic_df.join(case_df, on="case_id").select(
             "gene_id", *case_df.columns
         )
         return case_gene_id

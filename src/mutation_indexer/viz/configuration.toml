@@ -10,40 +10,40 @@ index_types = [
   "SSM_OCCURRENCE_CENTRIC"
 ]
 
-[builders.ascat]
-is_cached = false
-omit_cnv_data = false
+#[builders.ascat]
+#is_cached = false
+#omit_cnv_data = false
 
-[builders.ascat.backup]
-mode = "BOTH"
-path = "s3a://gdc-mutation-indexer/backups/ascat.parqet"
+#[builders.ascat.backup]
+#mode = "BOTH"
+#path = "s3a://gdc-mutation-indexer/backups/ascat.parqet"
 
-[builders.ascat_metadata]
-is_cached = true
+#[builders.ascat_metadata]
+#is_cached = true
 
-[builders.ascat_metadata.backup]
-mode = "NEITHER"
-path = ""
+#[builders.ascat_metadata.backup]
+#mode = "NEITHER"
+#path = ""
 
-[[builders.ascat_metadata.priorities]]
-experimental_strategy = "WGS"
-workflow_type = "ABSOLUTE GATK4 CNV Curated"
+#[[builders.ascat_metadata.priorities]]
+#experimental_strategy = "WGS"
+#workflow_type = "ABSOLUTE GATK4 CNV Curated"
 
-[[builders.ascat_metadata.priorities]]
-experimental_strategy = "WGS"
-workflow_type = "ABSOLUTE GATK4 CNV Auto"
+#[[builders.ascat_metadata.priorities]]
+#experimental_strategy = "WGS"
+#workflow_type = "ABSOLUTE GATK4 CNV Auto"
 
-[[builders.ascat_metadata.priorities]]
-experimental_strategy = "WGS"
-workflow_type = "AscatNGS"
+#[[builders.ascat_metadata.priorities]]
+#experimental_strategy = "WGS"
+#workflow_type = "AscatNGS"
 
-[[builders.ascat_metadata.priorities]]
-experimental_strategy = "Genotyping Array"
-workflow_type = "ASCAT3"
+#[[builders.ascat_metadata.priorities]]
+#experimental_strategy = "Genotyping Array"
+#workflow_type = "ASCAT3"
 
-[[builders.ascat_metadata.priorities]]
-experimental_strategy = "Genotyping Array"
-workflow_type = "ASCAT2"
+#[[builders.ascat_metadata.priorities]]
+#experimental_strategy = "Genotyping Array"
+#workflow_type = "ASCAT2"
 
 [builders.case]
 include_as_arrays = [

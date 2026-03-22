@@ -243,10 +243,23 @@ class MAFFileFilterFactory:
                 ]
             }
         }
+        vcf2maf = {
+            "bool": {
+                "must": [
+                    {"term": {"data_format": "MAF"}},
+                    {"term": {"data_type": "Masked Somatic Mutation"}},
+                    {
+                        "term": {
+                            "analysis.workflow_type": "vcf2maf"
+                        }
+                    },
+                ]
+            }
+        }
         filter = {
             "bool": {
-                "must": ({"terms": {"acl": acl}},),
-                "should": (aesvmm_workflow, fvam_workflow),
+                # "must": ({"terms": {"acl": acl}},),
+                "should": (aesvmm_workflow, fvam_workflow, vcf2maf),
                 "minimum_should_match": 1,
             }
         }
@@ -329,5 +342,5 @@ class MAFMetadataBuilder(
         return self._get_primary_aliquot_df(
             filters,
             frozenset(("case",)),
-            include_fields=("data_type", "analysis.workflow_type"),
+            include_fields=("data_type", "analysis.workflow_type", "cases.samples.submitter_id"),
         ).select("case_id", "data_type", "file_id", "workflow_type")

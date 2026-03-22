@@ -1,0 +1,14 @@
+---
+fields:
+  - &string_field
+    metadata: {}
+    name: cnv_id
+    nullable: true
+    type: string
+  - <<: *string_field
+    name: consequence_id
+  - <<: *string_field
+    name: occurrence_id
+  - <<: *string_field
+    name: observation_id
+type: struct

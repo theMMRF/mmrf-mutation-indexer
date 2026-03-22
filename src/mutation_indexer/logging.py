@@ -3,6 +3,8 @@ import platform
 import uuid
 from logging import handlers
 from typing import Any
+import pathlib
+import time
 
 from pythonjsonlogger import jsonlogger
 
@@ -42,8 +44,23 @@ log_formatter = DatadogLogFormatter("mutation_indexer")
 
 
 def configure() -> None:
+    # log_dir = pathlib.Path.home() / "logs" / "mmrf-mutation-indexer"
+    log_dir = pathlib.Path("/home/ssm-user/logs/mmrf-mutation-indexer/")
+    log_dir.mkdir(parents=True, exist_ok=True)
+
+    run_id = time.strftime("%Y-%m-%d_%H-%M-%S")
+    log_path = log_dir / f"mutation_indexer-{run_id}.log"
+
+    latest = log_dir / "current.log"
+    try:
+        if latest.exists() or latest.is_symlink():
+            latest.unlink()
+        latest.symlink_to(log_path.name)   # relative symlink inside the same dir
+    except OSError:
+        pass  # ignore if FS doesn't support symlinks
+
     log_handler = handlers.WatchedFileHandler(
-        "/var/log/python/mutation_indexer.json", mode="a+"
+        log_path, mode="a+"
     )
 
     log_handler.setFormatter(log_formatter)
