@@ -96,3 +96,6 @@ spark-2.*
 /.env
 .configs/
 data_release/
+
+# MMRF ignore
+run/conf/*.toml

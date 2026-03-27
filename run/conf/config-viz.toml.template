@@ -1,0 +1,73 @@
+[[builders.gistic_metadata.priorities]]
+experimental_strategy = "WGS"
+workflow_type = "GISTIC - Extreme Copy Number Score"
+
+[builders.gistic_metadata]
+is_cached = false
+
+[builders.gistic_metadata.backup]
+mode = "NEITHER"
+path = "s3a://<bucket>/backups/gistic_metadata.parqet"
+
+[builders.gistic]
+is_cached = false
+
+[builders.gistic.backup]
+mode = "NEITHER"
+path = "s3a://<bucket>/backups/gistic.parqet"
+
+[builders.case.backup]
+mode = "NEITHER"
+path = "s3a://<bucket>/backups/case.parqet"
+
+[builders.case_centric.backup]
+mode = "NEITHER"
+path = "s3a://<bucket>/backups/case_centric.parqet"
+
+[builders.civic_dna.backup]
+mode = "NEITHER"
+path = "s3a://<bucket>/backups/civic_dna.parqet"
+
+[builders.civic_protein.backup]
+mode = "NEITHER"
+path = "s3a://<bucket>/backups/civic_protein.parqet"
+
+[builders.cnv_centric.backup]
+mode = "NEITHER"
+path = "s3a://<bucket>/backups/cnv_centric.parqet"
+
+[builders.cnv_occurrence_centric.backup]
+mode = "NEITHER"
+path = "s3a://<bucket>/backups/cnv_occurrence_centric.parqet"
+
+[builders.gene_centric.backup]
+mode = "NEITHER"
+path = "s3a://<bucket>/backups/gene_centric.parqet"
+
+[builders.gene_model.backup]
+mode = "NEITHER"
+path = "s3a://<bucket>/backups/gene_model.parqet"
+
+[builders.maf.backup]
+mode = "NEITHER"
+path = "s3a://<bucket>/backups/maf.parqet"
+
+[builders.maf_metadata.backup]
+mode = "NEITHER"
+path = "s3a://<bucket>/backups/maf_metadata.parqet"
+
+[builders.primary_aliquot.backup]
+mode = "NEITHER"
+path = "s3a://<bucket>/backups/primary_aliquot.parqet"
+
+[builders.segment_cnv.backup]
+mode = "NEITHER"
+path = "s3a://<bucket>/backups/segment_cnv.parqet"
+
+[builders.segment_cnv_metadata.backup]
+mode = "NEITHER"
+path = "s3a://<bucket>/backups/segment_cnv_metadata.parqet"
+
+[builders.segment_cnv_occurrence_centric.backup]
+mode = "NEITHER"
+path = "s3a://<bucket>/backups/segment_cnv_occurrence_centric.parqet"

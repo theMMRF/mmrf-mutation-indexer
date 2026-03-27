@@ -1,0 +1,25 @@
+[builders.binary]
+bucket = "<bucket>"
+is_cached = false
+log2_uqfpkm_key = "{build[data_release]}/{build[build_version]}/bin_files/{{gene_id}}_log2_uqfpkms.bin"
+uqfpkm_key = "{build[data_release]}/{build[build_version]}/bin_files/{{gene_id}}_uqfpkms.bin"
+
+[builders.case.backup]
+mode = "NEITHER"
+path = "s3a://<bucket>/backups/case.parqet"
+
+[builders.case.destination]
+bucket = "<bucket>"
+key = "{build[data_release]}/{build[build_version]}/bin_files/case_ids.bin"
+
+[builders.gene_model.backup]
+mode = "NEITHER"
+path = "s3a://<bucket>/backups/gene_model.parqet"
+
+[builders.primary_aliquot.backup]
+mode = "NEITHER"
+path = "s3a://<bucket>/backups/primary_aliquot.parqet"
+
+[sqlite_database.destination]
+bucket = "<bucket>"
+key = "{build[data_release]}/{build[build_version]}/bin_files/geneexpression_db.sqlite3"
