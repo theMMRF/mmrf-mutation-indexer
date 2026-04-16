@@ -128,19 +128,5 @@ class GISTICMetadataBuilder(
             "workflow_type",
             "analysis_id",
             "experimental_strategy",
-            F.explode("case.samples").alias("sample"),
-        ).select(
-            "aliquot_created_datetime",
-            "aliquot_id",
-            "case",
-            "case_id",
-            "created_datetime",
-            "entity",
-            "entity_id",
-            "file_id",
-            "sample_id",
-            "workflow_type",
-            "analysis_id",
-            "experimental_strategy",
-            F.col("sample.submitter_id").alias("submitter_id")
+            "submitter_id",
         ).select("aliquot_id", "case_id", "file_id", "sample_id", "workflow_type", "analysis_id", "submitter_id")

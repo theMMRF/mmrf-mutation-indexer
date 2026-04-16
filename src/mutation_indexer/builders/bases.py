@@ -296,18 +296,7 @@ class PrimaryAliquotBuilder[TConfig: builders.Builder, TInputDFs: Mapping[str, o
             "case_id",
             "sample_id",
             "case",
-            F.explode("case.samples").alias("sample"),
-            "_weight",
-            *self._additional_selections,
-        ).select(
-            "entity_id",
-            "entity",
-            "file_id",
-            "created_datetime",
-            "case_id",
-            "sample_id",
-            "case",
-            F.col("sample.submitter_id").alias("submitter_id"),
+            "submitter_id",
             "_weight",
             *self._additional_selections,
         )
@@ -544,18 +533,7 @@ class PrimaryAliquotBuilder[TConfig: builders.Builder, TInputDFs: Mapping[str, o
                 "case_id",
                 "sample_id",
                 "case",
-                F.explode("case.samples").alias("sample"),
-                *self._additional_selections,
-            )
-            .select(
-                "entity_id",
-                "entity",
-                "file_id",
-                "created_datetime",
-                "case_id",
-                "sample_id",
-                "case",
-                F.col("sample.submitter_id").alias("submitter_id"),
+                "submitter_id",
                 *self._additional_selections,
             )
         )
@@ -773,6 +751,7 @@ class InclusivePrimaryAliquotBuilder[
                 "entity_id",
                 "file_id",
                 "sample_id",
+                "submitter_id",
                 *self._additional_selections,
             )
         )
