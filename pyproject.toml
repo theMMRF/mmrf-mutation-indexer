@@ -27,7 +27,7 @@ dependencies = [
   "typed-argument-parser",
   "typing-extensions",
   "indexclient @ git+https://github.com/NCI-GDC/indexclient.git@develop",
-  "gdcmodels @ git+https://github.com/uc-cdis/mmrf-models.git#mmrf",
+  "gdcmodels @ git+https://github.com/theMMRF/mmrf-models.git#mmrf",
   "mutation-indexer-resource @ git+https://github.com/NCI-GDC/mutation-indexer-resource.git@1.0.0"
 ]
 description = "ETL for mutation elasticsearch indices"
