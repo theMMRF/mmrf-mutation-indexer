@@ -55,7 +55,7 @@ frozenlist==1.7.0
     #   aiohttp
     #   aiosignal
 # gdcmodels==5.11.1
-gdcmodels @ git+https://github.com/uc-cdis/mmrf-models.git#mmrf
+gdcmodels @ git+https://github.com/theMMRF/mmrf-models.git#mmrf
     # via gdc-mutation-indexer (pyproject.toml)
 halo==0.0.31
     # via gdc-mutation-indexer (pyproject.toml)
