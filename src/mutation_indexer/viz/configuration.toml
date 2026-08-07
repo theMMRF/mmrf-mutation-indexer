@@ -49,6 +49,8 @@ index_types = [
 include_as_arrays = [
   "aliquot_ids",
   "analyte_ids",
+  "cgs_risk_key_criteria.cgs_risk_criteria",
+  "cgs_risk_key_criteria.other_criteria",
   "diagnoses.pathology_details.tumor_level_prostate",
   "diagnoses.sites_of_involvement",
   "diagnoses.treatments.route_of_administration",
@@ -90,6 +92,8 @@ id_field = "case_id"
 include_as_arrays = [
   "aliquot_ids",
   "analyte_ids",
+  "cgs_risk_key_criteria.cgs_risk_criteria",
+  "cgs_risk_key_criteria.other_criteria",
   "diagnoses.pathology_details.tumor_level_prostate",
   "diagnoses.sites_of_involvement",
   "diagnoses.treatments.route_of_administration",
