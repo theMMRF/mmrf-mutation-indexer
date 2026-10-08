@@ -13,7 +13,14 @@ SUMMARY_FIELDS = {
     "data_categories",
     "experimental_strategies",
 }
-GUID_FIELDS = {"file_id", "object_id", "did", "input_file_id", "output_file_id"}
+GUID_FIELDS = {
+    "file_id",
+    "object_id",
+    "did",
+    "input_file_id",
+    "output_file_id",
+    "src_file_id",
+}
 
 
 def resources(value):

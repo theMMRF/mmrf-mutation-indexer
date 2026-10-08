@@ -94,7 +94,7 @@ rejected. File references receive their existing IndexD AuthZ, owned embedded
 objects get nested mappings, and file-derived summaries get ownership contribution
 groups. Shared public cases retain clinical fields. Unknown owners, incomplete
 sidecars and ownership inside dynamic Spark maps fail closed; normalize file
-objects to structs before opting in. Both drivers use the pinned credential-
+objects to structs before opting in. The driver uses the pinned credential-
 preserving MMRF IndexClient for complete private IndexD reads.
 
 Preparation broadcasts the complete manifest/file sidecar and streams each Spark

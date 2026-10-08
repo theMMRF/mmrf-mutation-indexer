@@ -80,6 +80,19 @@ class OwnershipTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             next(values)
 
+    def test_mutation_src_file_id_uses_owner_and_unknown_source_fails_closed(self):
+        known = {"case_id": "case", "src_file_id": "meth"}
+        row = json.loads(
+            next(visibility._prepare_partition([json.dumps(known)], (MANIFEST, FILES)))
+        )
+        self.assertEqual(row[AUTHZ], [B])
+        with self.assertRaises(ValueError):
+            list(
+                visibility._prepare_partition(
+                    [json.dumps({"src_file_id": "unknown"})], (MANIFEST, FILES)
+                )
+            )
+
     def test_missing_file_owner_rejected_instead_of_public_marker(self):
         with self.assertRaises(ValueError):
             list(
