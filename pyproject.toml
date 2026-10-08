@@ -26,7 +26,7 @@ dependencies = [
   "tomli-w",
   "typed-argument-parser",
   "typing-extensions",
-  "indexclient @ git+https://github.com/NCI-GDC/indexclient.git@develop",
+  "indexclient @ git+https://github.com/theMMRF/indexclient.git@634a30696ad2da6797b5cefc78479542d243cd5e",
   "gdcmodels @ git+https://github.com/theMMRF/mmrf-models.git@mmrf",
   "mutation-indexer-resource @ git+https://github.com/NCI-GDC/mutation-indexer-resource.git@1.0.0"
 ]
