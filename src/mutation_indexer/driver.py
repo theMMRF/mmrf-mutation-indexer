@@ -9,7 +9,7 @@ import elasticsearch
 from indexclient import client
 from pyspark import sql
 
-from mutation_indexer import builders, configuration
+from mutation_indexer import builders, configuration, project_visibility
 from mutation_indexer import logging as mutation_indexer_logging
 from mutation_indexer.configuration import elasticsearch as es_config
 from mutation_indexer.configuration import indexd
@@ -57,6 +57,7 @@ def get_index_client(config: indexd.IndexD) -> client.IndexClient:
     Returns:
         An indexd client
     """
+    project_visibility.require_indexd_credentials(config.user, config.password)
     return client.IndexClient(
         # baseurl=f"{config.host}:{config.port}",
         baseurl=f"{config.host}",

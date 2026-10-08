@@ -6,7 +6,7 @@ from typing import ClassVar, Self
 from pyspark import sql
 from pyspark.sql.types import ArrayType, BooleanType, MapType, StructType
 
-from mutation_indexer import es_utils
+from mutation_indexer import es_utils, project_visibility
 from mutation_indexer.builders import utils
 from mutation_indexer.constants import app, build
 
@@ -96,45 +96,72 @@ class BaseBuilder(abc.ABC):
         into a destination, usually Elasticsearch.
         """
         index = self.config.indices[self.index_name]
-        mapper = self.mappings_loader.load_mapper(build.IndexType[self.index_name.upper()])
-
-        self.log(f"Creating {index} index")
-        response = self.config.es.indices.create(
-            index=index, mappings=mapper.mappings, settings=mapper.settings,
-            timeout="60s",
-            master_timeout="60s"
-        )
-        self.log(response)
-
-        self.log(f"Repartitioning {self.index_name}")
-        df = getattr(self, self.index_name).repartition(
-            self.config.df_repartition, self.id_field
+        mapper = self.mappings_loader.load_mapper(
+            build.IndexType[self.index_name.upper()]
         )
 
-        df = cast_booleans(df, mapper.mappings)
-        self.log(f"Exporting {self.index_name} index to {index}")
-        df.coalesce(self.config.df_coalesce).write.format(
-            "org.elasticsearch.spark.sql"
-        ).option("es.nodes", self.config.es_nodes).option(
-            "es.net.http.auth.user", self.config.source_es_user
-        ).option("es.net.http.auth.pass", self.config.es_pass).option(
-            "es.net.ssl", self.config.es_use_ssl
-        ).option(
-            "es.net.ssl.cert.allow.self.signed", self.config.disable_es_verify_certs
-        ).option("es.nodes.wan.only", "true").option(
-            "es.nodes.resolve.hostname", "false"
-        ).option("es.resource.write", index).option("es.http.timeout", "1h").option(
-            "es.http.retries", "-1"
-        ).option("es.batch.write.retry.count", "-1").option(
-            "es.batch.write.retry.wait", "10m"
-        ).option("es.batch.size.bytes", self.config.batch_size_bytes).option(
-            "es.batch.size.entries", self.config.batch_size_entries
-        ).option("es.batch.write.refresh", False).option("es.mapping.id", self.id_field).save(
-            index
-        )
-        self.log(f"Finished exporting {self.index_name} index to {index}")
+        if project_visibility.enabled() and self.config.es.indices.exists(index=index):
+            raise ValueError("Project visibility requires a fresh destination index")
+        original = getattr(self, self.index_name)
+        with project_visibility.prepared_dataframe(original, mapper.mappings) as (
+            source,
+            mapping,
+        ):
+            self.log(f"Creating {index} index")
+            response = self.config.es.indices.create(
+                index=index,
+                mappings=mapping,
+                settings=mapper.settings,
+                timeout="60s",
+                master_timeout="60s",
+            )
+            self.log(response)
 
-        df.unpersist()
+            self.log(f"Repartitioning {self.index_name}")
+            df = source.repartition(self.config.df_repartition, self.id_field)
+
+            df = cast_booleans(df, mapping)
+            self.log(f"Exporting {self.index_name} index to {index}")
+            project_visibility.visibility_writer(
+                df.coalesce(self.config.df_coalesce).write.format(
+                    "org.elasticsearch.spark.sql"
+                )
+            ).option("es.nodes", self.config.es_nodes).option(
+                "es.net.http.auth.user", self.config.source_es_user
+            ).option(
+                "es.net.http.auth.pass", self.config.es_pass
+            ).option(
+                "es.net.ssl", self.config.es_use_ssl
+            ).option(
+                "es.net.ssl.cert.allow.self.signed", self.config.disable_es_verify_certs
+            ).option(
+                "es.nodes.wan.only", "true"
+            ).option(
+                "es.nodes.resolve.hostname", "false"
+            ).option(
+                "es.resource.write", index
+            ).option(
+                "es.http.timeout", "1h"
+            ).option(
+                "es.http.retries", "-1"
+            ).option(
+                "es.batch.write.retry.count", "-1"
+            ).option(
+                "es.batch.write.retry.wait", "10m"
+            ).option(
+                "es.batch.size.bytes", self.config.batch_size_bytes
+            ).option(
+                "es.batch.size.entries", self.config.batch_size_entries
+            ).option(
+                "es.batch.write.refresh", False
+            ).option(
+                "es.mapping.id", self.id_field
+            ).save(
+                index
+            )
+            self.log(f"Finished exporting {self.index_name} index to {index}")
+
+            df.unpersist()
 
     def truncate_df_at_percentile(
         self,
