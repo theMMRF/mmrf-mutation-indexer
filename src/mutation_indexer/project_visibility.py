@@ -31,6 +31,25 @@ def require_indexd_credentials(user, password):
         )
 
 
+def submission_inputs():
+    """Localize immutable sidecars with the existing YARN config/PEX uploads."""
+    if not enabled():
+        return []
+    inputs = []
+    for variable, alias in (
+        ("PROJECT_VISIBILITY_INDEXD_MANIFEST", "visibility-indexd-manifest.json"),
+        ("PROJECT_VISIBILITY_FILE_DOCUMENTS", "visibility-files.ndjson"),
+    ):
+        value = os.getenv(variable)
+        if not value:
+            raise ValueError("Set " + variable + " on the submission host")
+        path = Path(value).resolve(strict=True)
+        if not path.is_file():
+            raise ValueError(variable + " must point to a regular file")
+        inputs.append((variable, path.as_uri(), alias))
+    return inputs
+
+
 def _load_inputs():
     manifest_path = os.getenv("PROJECT_VISIBILITY_INDEXD_MANIFEST")
     files_path = os.getenv("PROJECT_VISIBILITY_FILE_DOCUMENTS")

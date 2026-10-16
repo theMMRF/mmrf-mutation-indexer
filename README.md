@@ -115,3 +115,11 @@ PYTHONPATH=src python -m unittest discover -s tests/project_visibility -v
 This covers real local Spark transformations and both actual upload methods with
 stubbed Elasticsearch transport. A full dev ETL plus real Elasticsearch connector
 upload and query-service smoke test remains required before enabling enforcement.
+
+For the normal YARN client, export the three visibility variables on the submission
+host. The client localizes both sidecars alongside the config/PEX files and sets
+the application master's feature flag and localized paths. A shell export alone
+on an older client does not configure a cluster-mode driver. Reinstall the client
+and rebuild `driver-all` with the usual `run/build.sh` (from `run/`) after changing
+branches; a checkout alone leaves the old packaged driver in use. Failed Spark
+submissions now propagate a nonzero CLI exit rather than reporting success.

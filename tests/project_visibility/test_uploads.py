@@ -93,6 +93,21 @@ class OwnershipTests(unittest.TestCase):
                 )
             )
 
+    def test_explicit_null_cases_in_sidecar_preserve_root_file_ownership(self):
+        file = dict(FILES[1], cases=None)
+        result = json.loads(
+            next(visibility._prepare_partition([json.dumps(file)], (MANIFEST, [file])))
+        )
+        self.assertEqual(result[AUTHZ], [B])
+        file["cases"] = [{"case_id": "case", "project": None}]
+        source = {"case_id": "case", "summary": {"file_count": 1}}
+        result = json.loads(
+            next(
+                visibility._prepare_partition([json.dumps(source)], (MANIFEST, [file]))
+            )
+        )
+        self.assertEqual(result[SUMMARY][0]["file_count"], 1)
+
     def test_missing_file_owner_rejected_instead_of_public_marker(self):
         with self.assertRaises(ValueError):
             list(
@@ -219,6 +234,202 @@ class UploadBoundaryTests(unittest.TestCase):
                 prepare.assert_not_called()
                 obj.config.es.indices.create.assert_not_called()
                 obj._create_index.assert_not_called()
+
+
+class YarnSubmissionTests(unittest.TestCase):
+    def arguments(self):
+        import __future__
+        from typing import Iterable
+
+        filename = ROOT / "src/mutation_indexer/client.py"
+        tree = ast.parse(filename.read_text())
+        fn = next(
+            n
+            for n in tree.body
+            if isinstance(n, ast.FunctionDef) and n.name == "get_file_args"
+        )
+        namespace = {
+            "Iterable": Iterable,
+            "project_visibility": visibility,
+            "app": types.SimpleNamespace(
+                CONFIGURATION_FILE="config.toml", PEX_FILE="mutation-indexer.pex"
+            ),
+        }
+        exec(
+            compile(
+                ast.Module(body=[fn], type_ignores=[]),
+                str(filename),
+                "exec",
+                flags=__future__.annotations.compiler_flag,
+            ),
+            namespace,
+        )
+        config = types.SimpleNamespace(
+            config_file="/config.toml",
+            pex_file="/driver-all",
+            jar_dir=Path("/nonexistent-jars"),
+        )
+        return list(namespace["get_file_args"](config))
+
+    def test_default_submission_preserves_existing_files_and_environment(self):
+        with patch.dict(os.environ, {"PROJECT_VISIBILITY_ENABLED": "false"}):
+            self.assertEqual(
+                self.arguments(),
+                [
+                    (
+                        "--conf",
+                        "spark.yarn.dist.files=/config.toml#config.toml,/driver-all#mutation-indexer.pex",
+                    ),
+                    ("--jars", ""),
+                ],
+            )
+
+    def test_enabled_submission_localizes_inputs_and_sets_cluster_driver_environment(
+        self,
+    ):
+        with tempfile.TemporaryDirectory() as directory:
+            manifest, files = (
+                Path(directory) / "manifest with space.json",
+                Path(directory) / "files.ndjson",
+            )
+            manifest.write_text("[]")
+            files.write_text("")
+            with patch.dict(
+                os.environ,
+                {
+                    "PROJECT_VISIBILITY_ENABLED": "true",
+                    "PROJECT_VISIBILITY_INDEXD_MANIFEST": str(manifest),
+                    "PROJECT_VISIBILITY_FILE_DOCUMENTS": str(files),
+                },
+            ):
+                args = self.arguments()
+            self.assertIn(
+                manifest.resolve().as_uri() + "#visibility-indexd-manifest.json",
+                args[0][1],
+            )
+            self.assertIn(
+                files.resolve().as_uri() + "#visibility-files.ndjson", args[0][1]
+            )
+            self.assertIn(
+                ("--conf", "spark.yarn.appMasterEnv.PROJECT_VISIBILITY_ENABLED=true"),
+                args,
+            )
+            self.assertIn(
+                (
+                    "--conf",
+                    "spark.yarn.appMasterEnv.PROJECT_VISIBILITY_INDEXD_MANIFEST=./visibility-indexd-manifest.json",
+                ),
+                args,
+            )
+            self.assertIn(
+                (
+                    "--conf",
+                    "spark.yarn.appMasterEnv.PROJECT_VISIBILITY_FILE_DOCUMENTS=./visibility-files.ndjson",
+                ),
+                args,
+            )
+
+    def test_failed_spark_submission_cannot_report_a_successful_build(self):
+        import __future__
+        import asyncio
+        from unittest.mock import AsyncMock
+
+        filename = ROOT / "src/mutation_indexer/client.py"
+        tree = ast.parse(filename.read_text())
+        fn = next(
+            n
+            for n in tree.body
+            if isinstance(n, ast.AsyncFunctionDef) and n.name == "run_spark_command"
+        )
+        namespace = {
+            "asyncio": asyncio,
+            "itertools": __import__("itertools"),
+            "more_itertools": types.SimpleNamespace(
+                flatten=lambda values: (x for group in values for x in group),
+                value_chain=lambda *values: (
+                    x for v in values for x in ([v] if isinstance(v, str) else v)
+                ),
+            ),
+            "get_file_args": lambda config: [],
+        }
+        exec(
+            compile(
+                ast.Module(body=[fn], type_ignores=[]),
+                str(filename),
+                "exec",
+                flags=__future__.annotations.compiler_flag,
+            ),
+            namespace,
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            config = types.SimpleNamespace(
+                spark=types.SimpleNamespace(get_arguments=lambda: []),
+                build=types.SimpleNamespace(
+                    spark_submit="spark-submit",
+                    driver="driver.py",
+                    output_log=str(Path(directory) / "output.log"),
+                    error_log=str(Path(directory) / "error.log"),
+                ),
+            )
+            for code in (0, 2):
+                process = types.SimpleNamespace(returncode=code, wait=AsyncMock())
+                with patch.object(
+                    asyncio,
+                    "create_subprocess_shell",
+                    new=AsyncMock(return_value=process),
+                ):
+                    if code:
+                        with self.assertRaisesRegex(RuntimeError, "exit code 2"):
+                            asyncio.run(
+                                namespace["run_spark_command"](
+                                    config, types.SimpleNamespace(value="viz")
+                                )
+                            )
+                    else:
+                        asyncio.run(
+                            namespace["run_spark_command"](
+                                config, types.SimpleNamespace(value="viz")
+                            )
+                        )
+
+    def test_cli_propagates_failures_to_a_nonzero_exit(self):
+        import __future__
+
+        filename = ROOT / "src/mutation_indexer/client.py"
+        tree = ast.parse(filename.read_text())
+        fn = next(
+            n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == "main"
+        )
+        runtime = MagicMock()
+        runtime.run.side_effect = RuntimeError("failed submission")
+        namespace = {
+            "Args": MagicMock(),
+            "asyncio": runtime,
+            "_main": lambda args: object(),
+            "logger": MagicMock(),
+        }
+        exec(
+            compile(
+                ast.Module(body=[fn], type_ignores=[]),
+                str(filename),
+                "exec",
+                flags=__future__.annotations.compiler_flag,
+            ),
+            namespace,
+        )
+        with self.assertRaisesRegex(RuntimeError, "failed submission"):
+            namespace["main"]()
+
+    def test_missing_submission_input_fails_before_launch(self):
+        with patch.dict(
+            os.environ,
+            {
+                "PROJECT_VISIBILITY_ENABLED": "true",
+                "PROJECT_VISIBILITY_INDEXD_MANIFEST": "/nonexistent-manifest",
+            },
+        ):
+            with self.assertRaises(FileNotFoundError):
+                self.arguments()
 
 
 @unittest.skipUnless(

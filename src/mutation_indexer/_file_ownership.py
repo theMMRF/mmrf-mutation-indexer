@@ -115,7 +115,7 @@ def summary_groups(files, manifest):
         if isinstance(size, bool) or not isinstance(size, int) or size < 0:
             raise ValueError("File sizes must be nonnegative integers")
         group["file_size"] += size
-        for case in file.get("cases", []):
+        for case in file.get("cases") or []:
             if case.get("case_id"):
                 group["case_ids"].add(case["case_id"])
     return [
@@ -151,10 +151,10 @@ def iter_prepare_sources(documents, manifest, file_documents):
             raise ValueError(
                 "The file projection contains a document without ownership"
             )
-        for case in file.get("cases", []):
+        for case in file.get("cases") or []:
             if case.get("case_id"):
                 by_case[case["case_id"]].append(file)
-            project = case.get("project", {})
+            project = case.get("project") or {}
             if project.get("project_id"):
                 by_project[project["project_id"]].append(file)
 
