@@ -282,6 +282,14 @@ def ownership_mapping(documents):
         SUMMARY: {"type": "object", "enabled": False},
     }
 
+    def objects(value):
+        """Visit object elements through any number of array dimensions."""
+        if isinstance(value, dict):
+            yield value
+        elif isinstance(value, list):
+            for item in value:
+                yield from objects(item)
+
     def visit(value, props, root=False):
         if isinstance(value, list):
             for item in value:
@@ -292,17 +300,8 @@ def ownership_mapping(documents):
                     props.setdefault(key, {"type": "object", "enabled": False})
                 elif key == AUTHZ:
                     props.setdefault(key, {"type": "keyword"})
-                elif (
-                    isinstance(item, dict)
-                    or isinstance(item, list)
-                    and any(isinstance(x, dict) for x in item)
-                ):
-                    owned = (
-                        isinstance(item, dict)
-                        and AUTHZ in item
-                        or isinstance(item, list)
-                        and any(isinstance(x, dict) and AUTHZ in x for x in item)
-                    )
+                elif any(True for _ in objects(item)):
+                    owned = any(AUTHZ in child for child in objects(item))
                     if key not in props:
                         props[key] = {"properties": {}}
                     if owned:

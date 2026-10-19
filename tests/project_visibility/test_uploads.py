@@ -138,6 +138,15 @@ class OwnershipTests(unittest.TestCase):
         )
         self.assertEqual(MAPPING["properties"]["files"]["type"], "object")
 
+    def test_layout_finds_owned_objects_through_multiple_array_levels(self):
+        source = {"batches": [[], [[FILES[1]]]], "clinical": [[{"age": 50}]]}
+        values = list(visibility._prepare_partition([json.dumps(source)], context()))
+        additions = next(visibility._partition_mapping(values))
+        definition = additions["properties"]["batches"]
+        self.assertEqual(definition["type"], "nested")
+        self.assertEqual(definition["properties"][AUTHZ], {"type": "keyword"})
+        self.assertNotIn(AUTHZ, additions["properties"]["clinical"]["properties"])
+
 
 class UploadBoundaryTests(unittest.TestCase):
     def method(self, filename, classname, method):
@@ -379,6 +388,7 @@ class YarnSubmissionTests(unittest.TestCase):
                 ("--conf", "spark.yarn.appMasterEnv.PROJECT_VISIBILITY_ENABLED=true"),
                 args,
             )
+            self.assertIn(("--conf", "spark.yarn.maxAppAttempts=1"), args)
             self.assertIn(
                 (
                     "--conf",
@@ -569,6 +579,33 @@ class SparkTests(unittest.TestCase):
                 with visibility.prepared_dataframe(frame, MAPPING):
                     entered = True
         self.assertFalse(entered)
+
+    def test_arrays_of_arrays_preserve_file_ownership_through_spark_schema(self):
+        source = {"case_id": "case", "batches": [[], [[FILES[0], FILES[1]]]]}
+        frame = self.spark.read.json(
+            self.spark.sparkContext.parallelize([json.dumps(source)], 1)
+        )
+        mapping = {
+            "properties": {
+                "batches": {
+                    "type": "object",
+                    "include_in_root": True,
+                    "properties": {
+                        "file_name": {"type": "keyword", "copy_to": "all_names"}
+                    },
+                }
+            }
+        }
+        with tempfile.TemporaryDirectory() as d, patch.dict(os.environ, self.inputs(d)):
+            with visibility.prepared_dataframe(frame, mapping) as (result, layout):
+                rows = [json.loads(value) for value in result.toJSON().collect()]
+                self.assertEqual(rows[0]["batches"][1][0][0][AUTHZ], [A])
+                self.assertEqual(rows[0]["batches"][1][0][1][AUTHZ], [B])
+                self.assertEqual(rows[0]["batches"][0], [])
+                definition = layout["properties"]["batches"]
+                self.assertEqual(definition["type"], "nested")
+                self.assertNotIn("include_in_root", definition)
+                self.assertNotIn("copy_to", definition["properties"]["file_name"])
 
     def test_empty_output_has_valid_mapping_and_no_invented_records(self):
         from pyspark.sql import types as T

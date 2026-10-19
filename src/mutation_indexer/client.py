@@ -51,6 +51,9 @@ def get_file_args(config: build.Build) -> Iterable[tuple[str, str]]:
     yield ("--conf", f"spark.yarn.dist.files={','.join(files)}")
     if inputs:
         yield ("--conf", "spark.yarn.appMasterEnv.PROJECT_VISIBILITY_ENABLED=true")
+        # An interrupted upload can leave partial indices. A second AM attempt
+        # cannot resume those destinations and obscures the original failure.
+        yield ("--conf", "spark.yarn.maxAppAttempts=1")
         for variable, _, alias in inputs:
             yield ("--conf", f"spark.yarn.appMasterEnv.{variable}=./{alias}")
     yield (
