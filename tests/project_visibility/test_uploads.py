@@ -236,6 +236,62 @@ class UploadBoundaryTests(unittest.TestCase):
                 obj._create_index.assert_not_called()
 
 
+class DriverFailureTests(unittest.TestCase):
+    def entrypoint(self):
+        # Run the actual entrypoint without importing Spark/model dependencies.
+        path = ROOT / "src/mutation_indexer/driver.py"
+        module = ast.parse(path.read_text())
+        function = next(
+            node
+            for node in module.body
+            if isinstance(node, ast.FunctionDef) and node.name == "main"
+        )
+        namespace = {
+            "mutation_indexer_logging": MagicMock(),
+            "logger": MagicMock(),
+            "pathlib": types.SimpleNamespace(Path=Path),
+            "app": types.SimpleNamespace(CONFIGURATION_FILE="configuration.toml"),
+        }
+        future = ast.ImportFrom(
+            module="__future__",
+            names=[ast.alias(name="annotations")],
+            level=0,
+        )
+        code = ast.fix_missing_locations(
+            ast.Module(body=[future, function], type_ignores=[])
+        )
+        exec(compile(code, str(path), "exec"), namespace)
+        return namespace["main"], namespace
+
+    def test_build_failure_propagates_to_spark_instead_of_success(self):
+        main, namespace = self.entrypoint()
+        driver = MagicMock()
+        failure = RuntimeError("Elasticsearch connection refused during upload")
+        driver.run.side_effect = failure
+        with self.assertRaises(RuntimeError) as result:
+            main(driver)
+        self.assertIs(result.exception, failure)
+        namespace["logger"].critical.assert_called_once_with(
+            "Driver failed", exc_info=True
+        )
+
+    def test_configuration_failure_propagates_without_running_build(self):
+        main, namespace = self.entrypoint()
+        driver = MagicMock()
+        driver.load_config.side_effect = ValueError("Invalid configuration")
+        with self.assertRaisesRegex(ValueError, "Invalid configuration"):
+            main(driver)
+        driver.run.assert_not_called()
+        namespace["logger"].critical.assert_called_once()
+
+    def test_success_runs_build_and_preserves_normal_return(self):
+        main, namespace = self.entrypoint()
+        driver = MagicMock()
+        self.assertIsNone(main(driver))
+        driver.run.assert_called_once_with(driver.load_config.return_value)
+        namespace["logger"].critical.assert_not_called()
+
+
 class YarnSubmissionTests(unittest.TestCase):
     def arguments(self):
         import __future__

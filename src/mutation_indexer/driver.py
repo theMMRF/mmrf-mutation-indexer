@@ -162,3 +162,4 @@ def main[TConfig: configuration.Configuration](driver: Driver[TConfig]) -> None:
         driver.run(config)
     except Exception:
         logger.critical("Driver failed", exc_info=True)
+        raise
