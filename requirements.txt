@@ -68,7 +68,7 @@ importlib-resources==6.5.2
     #   gdc-mutation-indexer (pyproject.toml)
     #   gdcmodels
 # indexclient==2.7
-indexclient @ git+https://github.com/NCI-GDC/indexclient.git@develop
+indexclient @ git+https://github.com/theMMRF/indexclient.git@634a30696ad2da6797b5cefc78479542d243cd5e
     # via gdc-mutation-indexer (pyproject.toml)
 inflect==7.5.0
     # via gdc-mutation-indexer (pyproject.toml)

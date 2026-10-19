@@ -64,3 +64,67 @@ Command:
 # Make sure you have sourced your venv!
 bin/update_models.sh
 ```
+
+## Optional project-scoped file visibility
+
+This feature is disabled by default. Existing builds and Spark writer options
+retain their behavior. Enable it only alongside the matching MMRF query-service
+changes and esbuild ownership rebuild. User visibility is granted separately
+through `indexd/read-metadata` in ordinary Gen3 user YAML; downloads continue to
+use `fence/read-storage`. Permissions are not stored in these indices.
+
+Before a full build, stage a complete administrator IndexD export and the complete
+**original file projection** from esbuild in private operator storage. Never use
+researcher-filtered inputs or an empty manifest to mark files public. Manifest JSON
+is a records list or `{"records": [...]}`; the file sidecar is source NDJSON, without
+bulk action lines or Elasticsearch hit wrappers. Supply the same immutable inputs
+for every output build, including genomic projections:
+
+```bash
+export PROJECT_VISIBILITY_ENABLED=true
+export PROJECT_VISIBILITY_INDEXD_MANIFEST=/private/operator/indexd-manifest.json
+export PROJECT_VISIBILITY_FILE_DOCUMENTS=/private/operator/files.ndjson
+# Set valid IndexD service credentials through the existing job secret mechanism.
+# Run the normal builder with a fresh destination index prefix for every output.
+```
+
+All Elasticsearch uploads through `DataFrameUtil.write` and `BaseBuilder.load`
+validate ownership before creating a destination index. Existing destinations are
+rejected. File references receive their existing IndexD AuthZ, owned embedded
+objects get nested mappings, and file-derived summaries get ownership contribution
+groups. Shared public cases retain clinical fields. Unknown owners, incomplete
+sidecars and ownership inside dynamic Spark maps fail closed; normalize file
+objects to structs before opting in. The driver uses the pinned credential-
+preserving MMRF IndexClient for complete private IndexD reads.
+
+Preparation streams the complete file sidecar twice to resolve aliases and
+validate each file, retaining only GUID ownership and case/project summary groups.
+That compact context is cached across outputs and broadcast to Spark workers;
+full file documents are never broadcast or copied per partition. Validation still
+examines all metadata and rejects unknown owners before any index is created.
+Validated output rows are cached on executor disks until upload finishes;
+plan driver/executor memory for the compact lookup and disk space for the output
+cache. Broadcast and disk-cache cleanup completes before the next upload.
+Only the upload dataframe is augmented; existing upstream builder schemas/types
+and IDs are retained. No alias switch happens here. Validate all fresh outputs,
+then coordinate the alias switch and query-service feature flags through the
+GitOps rollout. Later user/group changes require usersync, without an index rebuild.
+
+Run the focused suite with Python 3.13, Java 17 and Spark 3.5:
+
+```bash
+python -m pip install pyspark==3.5.7
+PYTHONPATH=src python -m unittest discover -s tests/project_visibility -v
+```
+
+This covers real local Spark transformations and both actual upload methods with
+stubbed Elasticsearch transport. A full dev ETL plus real Elasticsearch connector
+upload and query-service smoke test remains required before enabling enforcement.
+
+For the normal YARN client, export the three visibility variables on the submission
+host. The client localizes both sidecars alongside the config/PEX files and sets
+the application master's feature flag and localized paths. A shell export alone
+on an older client does not configure a cluster-mode driver. Reinstall the client
+and rebuild `driver-all` by running `(cd run && bash build.sh)` from the repository
+root after changing branches; a checkout alone leaves the old packaged driver in use. Failed Spark
+submissions now propagate a nonzero CLI exit rather than reporting success.

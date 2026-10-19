@@ -9,7 +9,7 @@ import halo
 import more_itertools
 import tap
 
-from mutation_indexer import configuration, gene_expression, viz
+from mutation_indexer import configuration, gene_expression, project_visibility, viz
 from mutation_indexer.configuration import build
 from mutation_indexer.constants import app
 
@@ -42,17 +42,20 @@ def get_file_args(config: build.Build) -> Iterable[tuple[str, str]]:
     Yields:
         a tuple of argument flag and value.
     """
-    files = ",".join(
-        (
-            f"{config.config_file}#{app.CONFIGURATION_FILE}",
-            f"{config.pex_file}#{app.PEX_FILE}",
-        )
-    )
-
-    yield (
-        "--conf",
-        f"spark.yarn.dist.files={files}",
-    )
+    inputs = project_visibility.submission_inputs()
+    files = [
+        f"{config.config_file}#{app.CONFIGURATION_FILE}",
+        f"{config.pex_file}#{app.PEX_FILE}",
+    ]
+    files.extend(f"{uri}#{alias}" for _, uri, alias in inputs)
+    yield ("--conf", f"spark.yarn.dist.files={','.join(files)}")
+    if inputs:
+        yield ("--conf", "spark.yarn.appMasterEnv.PROJECT_VISIBILITY_ENABLED=true")
+        # An interrupted upload can leave partial indices. A second AM attempt
+        # cannot resume those destinations and obscures the original failure.
+        yield ("--conf", "spark.yarn.maxAppAttempts=1")
+        for variable, _, alias in inputs:
+            yield ("--conf", f"spark.yarn.appMasterEnv.{variable}=./{alias}")
     yield (
         "--jars",
         ",".join(map(str, config.jar_dir.glob("**/*.jar"))),
@@ -88,6 +91,8 @@ async def run_spark_command(config: configuration.Configuration, driver: app.Dri
         )
 
         await process.wait()
+        if process.returncode != 0:
+            raise RuntimeError(f"spark-submit failed with exit code {process.returncode}; inspect the configured build logs")
 
 
 async def force_merge_indices(config: configuration.Configuration) -> None:
@@ -147,6 +152,7 @@ def main() -> None:
         asyncio.run(_main(args))
     except:  # noqa: E722
         logger.critical("Application failed.", exc_info=True)
+        raise
 
 
 if __name__ == "__main__":

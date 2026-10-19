@@ -22,6 +22,7 @@ from gdcmodels import esmodels, mapper
 from pyspark import sql
 from pyspark.sql import types
 
+from mutation_indexer import project_visibility
 from mutation_indexer.configuration import elasticsearch as es_config
 from mutation_indexer.constants import build
 
@@ -608,7 +609,9 @@ class DataFrameUtil:
             .select("_source.*")
         )
 
-    def _create_index(self, index: str, index_type: build.IndexType) -> None:
+    def _create_index(
+        self, index: str, index_type: build.IndexType, mapping=None, settings=None
+    ) -> None:
         """
         Creates the index based on the mapping associated with the given index
         type.
@@ -618,15 +621,18 @@ class DataFrameUtil:
             index_type: the index type correlating to the mapping for the new index
         """
         if self._es_client.indices.exists(index=index):
-            raise Exception(f"Index: {index} already exists. Cannot overwrite existing index.")
+            raise Exception(
+                f"Index: {index} already exists. Cannot overwrite existing index."
+            )
 
-        mappings = self._mappings_loader.load_mapper(index_type)
+        if mapping is None:
+            mapper = self._mappings_loader.load_mapper(index_type)
+            mapping, settings = mapper.mappings, mapper.settings
+        self._es_client.indices.create(index=index, mappings=mapping, settings=settings)
 
-        self._es_client.indices.create(
-            index=index, mappings=mappings.mappings, settings=mappings.settings
-        )
-
-    def write(self, df: sql.DataFrame, index_type: build.IndexType, id_field: str) -> None:
+    def write(
+        self, df: sql.DataFrame, index_type: build.IndexType, id_field: str
+    ) -> None:
         """
         A utility for writing data from a data frame into elasticsearch.
 
@@ -637,30 +643,38 @@ class DataFrameUtil:
         """
         index = self._get_index(index_type)
 
-        self._create_index(index, index_type)
-        (
-            df.write.format(self.ES_FORMAT)
-            .option("es.nodes", self._config.connection.nodes)
-            .option("es.net.http.auth.user", self._config.connection.user)
-            .option("es.net.http.auth.pass", self._config.connection.password)
-            .option("es.net.ssl", self._config.connection.use_ssl)
-            .option(
-                "es.net.ssl.cert.allow.self.signed",
-                not self._config.connection.verify_certs,
+        if project_visibility.enabled() and self._es_client.indices.exists(index=index):
+            raise ValueError("Project visibility requires a fresh destination index")
+        mapper = self._mappings_loader.load_mapper(index_type)
+        original_mapping = mapper.mappings
+        with project_visibility.prepared_dataframe(df, original_mapping) as (
+            df,
+            mapping,
+        ):
+            self._create_index(index, index_type, mapping, mapper.settings)
+            (
+                project_visibility.visibility_writer(df.write.format(self.ES_FORMAT))
+                .option("es.nodes", self._config.connection.nodes)
+                .option("es.net.http.auth.user", self._config.connection.user)
+                .option("es.net.http.auth.pass", self._config.connection.password)
+                .option("es.net.ssl", self._config.connection.use_ssl)
+                .option(
+                    "es.net.ssl.cert.allow.self.signed",
+                    not self._config.connection.verify_certs,
+                )
+                .option("es.nodes.wan.only", "true")
+                .option("es.nodes.resolve.hostname", "false")
+                .option("es.resource.write", index)
+                .option("es.http.timeout", "1h")
+                .option("es.http.retries", "-1")
+                .option("es.batch.write.retry.count", "-1")
+                .option("es.batch.write.retry.wait", "10m")
+                .option("es.batch.size.bytes", self._config.write.batch_size_bytes)
+                .option("es.batch.size.entries", self._config.write.batch_size_entries)
+                .option("es.batch.write.refresh", True)
+                .option("es.mapping.id", id_field)
+                .save(index)
             )
-            .option("es.nodes.wan.only", "true")
-            .option("es.nodes.resolve.hostname", "false")
-            .option("es.resource.write", index)
-            .option("es.http.timeout", "1h")
-            .option("es.http.retries", "-1")
-            .option("es.batch.write.retry.count", "-1")
-            .option("es.batch.write.retry.wait", "10m")
-            .option("es.batch.size.bytes", self._config.write.batch_size_bytes)
-            .option("es.batch.size.entries", self._config.write.batch_size_entries)
-            .option("es.batch.write.refresh", True)
-            .option("es.mapping.id", id_field)
-            .save(index)
-        )
 
 
 class RDDUtil:
