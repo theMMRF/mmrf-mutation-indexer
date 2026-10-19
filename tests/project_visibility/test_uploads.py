@@ -13,6 +13,7 @@ from unittest.mock import MagicMock, patch
 
 from mutation_indexer import project_visibility as visibility
 from mutation_indexer._file_ownership import AUTHZ, SUMMARY, VERSION
+from mutation_indexer.visibility_context import build_context
 
 ROOT = Path(__file__).resolve().parents[2]
 A, B = "/programs/MMRF/projects/public", "/programs/MMRF/projects/methylation"
@@ -48,6 +49,10 @@ MAPPING = {
 }
 
 
+def context(manifest=MANIFEST, files=FILES):
+    return build_context(manifest, lambda: iter(files))
+
+
 class OwnershipTests(unittest.TestCase):
     def test_disabled_does_not_change_rows_mapping_writer_or_require_inputs(self):
         frame, writer = object(), MagicMock()
@@ -70,7 +75,7 @@ class OwnershipTests(unittest.TestCase):
 
     def test_partitions_stream_and_preserve_separate_shared_case_ownership(self):
         values = visibility._prepare_partition(
-            iter([json.dumps(SOURCE), "invalid-json"]), (MANIFEST, FILES)
+            iter([json.dumps(SOURCE), "invalid-json"]), context()
         )
         result = json.loads(next(values))
         self.assertNotIn(AUTHZ, result)
@@ -83,27 +88,33 @@ class OwnershipTests(unittest.TestCase):
     def test_mutation_src_file_id_uses_owner_and_unknown_source_fails_closed(self):
         known = {"case_id": "case", "src_file_id": "meth"}
         row = json.loads(
-            next(visibility._prepare_partition([json.dumps(known)], (MANIFEST, FILES)))
+            next(visibility._prepare_partition([json.dumps(known)], context()))
         )
         self.assertEqual(row[AUTHZ], [B])
         with self.assertRaises(ValueError):
             list(
                 visibility._prepare_partition(
-                    [json.dumps({"src_file_id": "unknown"})], (MANIFEST, FILES)
+                    [json.dumps({"src_file_id": "unknown"})], context()
                 )
             )
 
     def test_explicit_null_cases_in_sidecar_preserve_root_file_ownership(self):
         file = dict(FILES[1], cases=None)
         result = json.loads(
-            next(visibility._prepare_partition([json.dumps(file)], (MANIFEST, [file])))
+            next(
+                visibility._prepare_partition(
+                    [json.dumps(file)], context(MANIFEST, [file])
+                )
+            )
         )
         self.assertEqual(result[AUTHZ], [B])
         file["cases"] = [{"case_id": "case", "project": None}]
         source = {"case_id": "case", "summary": {"file_count": 1}}
         result = json.loads(
             next(
-                visibility._prepare_partition([json.dumps(source)], (MANIFEST, [file]))
+                visibility._prepare_partition(
+                    [json.dumps(source)], context(MANIFEST, [file])
+                )
             )
         )
         self.assertEqual(result[SUMMARY][0]["file_count"], 1)
@@ -112,14 +123,12 @@ class OwnershipTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             list(
                 visibility._prepare_partition(
-                    [json.dumps(SOURCE)], (MANIFEST[:1], FILES)
+                    [json.dumps(SOURCE)], context(MANIFEST[:1], FILES)
                 )
             )
 
     def test_partition_layout_preserves_clinical_case_and_removes_parent_copies(self):
-        values = list(
-            visibility._prepare_partition([json.dumps(SOURCE)], (MANIFEST, FILES))
-        )
+        values = list(visibility._prepare_partition([json.dumps(SOURCE)], context()))
         additions = next(visibility._partition_mapping(values))
         mapping = visibility._merge_additions(MAPPING, additions)
         self.assertEqual(mapping["properties"]["files"]["type"], "nested")

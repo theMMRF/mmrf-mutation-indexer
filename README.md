@@ -97,9 +97,14 @@ sidecars and ownership inside dynamic Spark maps fail closed; normalize file
 objects to structs before opting in. The driver uses the pinned credential-
 preserving MMRF IndexClient for complete private IndexD reads.
 
-Preparation broadcasts the complete manifest/file sidecar and streams each Spark
-partition. Validated rows are cached on executor disks until upload finishes;
-plan driver/executor memory for the sidecars and disk space for the output cache.
+Preparation streams the complete file sidecar twice to resolve aliases and
+validate each file, retaining only GUID ownership and case/project summary groups.
+That compact context is cached across outputs and broadcast to Spark workers;
+full file documents are never broadcast or copied per partition. Validation still
+examines all metadata and rejects unknown owners before any index is created.
+Validated output rows are cached on executor disks until upload finishes;
+plan driver/executor memory for the compact lookup and disk space for the output
+cache. Broadcast and disk-cache cleanup completes before the next upload.
 Only the upload dataframe is augmented; existing upstream builder schemas/types
 and IDs are retained. No alias switch happens here. Validate all fresh outputs,
 then coordinate the alias switch and query-service feature flags through the
